@@ -1,31 +1,31 @@
 aid: retool
 name: Retool
 description: >-
-  Hi, I would like to create a workflow that works as an API that can be
-  accessed via trigger using a Webhook. Inside this workflow, I will ...
+  Retool is a low-code platform for building internal tools quickly using
+  pre-built components that connect to any database or API.
 type: Index
-position: Consumer
-access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - API
-created: '2025-01-08'
-modified: '2025-01-08'
+  - Low Code
+  - Internal Tools
 url: >-
   https://raw.githubusercontent.com/api-evangelist/retool/refs/heads/main/apis.yml
+created: '2025-01-08'
+modified: '2026-03-16'
 specificationVersion: '0.19'
 apis:
   - aid: retool:retool
     name: Retool
     description: >-
-      Hi, I would like to create a workflow that works as an API that can be
-      accessed via trigger using a Webhook. Inside this workflow, I will ...
+      Retool is a low-code platform for building internal tools quickly using
+      pre-built components that connect to any database or API.
     humanURL: https://retool.com/
     tags:
       - API
     properties:
       - type: Documentation
-        url: https://retool.com/
+        url: https://docs.retool.com/
 maintainers:
   - FN: Kin Lane
-    email: info@apievangelist.com
+    email: kin@apievangelist.com
