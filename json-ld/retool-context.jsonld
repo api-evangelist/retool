@@ -1,0 +1,81 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "retool": "https://retool.com/ns/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "id": "@id",
+    "type": "@type",
+
+    "User": "schema:Person",
+    "Group": "schema:Organization",
+    "App": "schema:SoftwareApplication",
+    "Resource": "schema:Dataset",
+    "Folder": "retool:Folder",
+
+    "email": "schema:email",
+    "firstName": "schema:givenName",
+    "lastName": "schema:familyName",
+    "isAdmin": {
+      "@id": "retool:isAdmin",
+      "@type": "xsd:boolean"
+    },
+    "isDisabled": {
+      "@id": "retool:isDisabled",
+      "@type": "xsd:boolean"
+    },
+    "userType": {
+      "@id": "retool:userType",
+      "@type": "xsd:string"
+    },
+    "groups": {
+      "@id": "schema:memberOf",
+      "@container": "@set"
+    },
+
+    "name": "schema:name",
+    "description": "schema:description",
+    "members": {
+      "@id": "schema:member",
+      "@container": "@set"
+    },
+
+    "folderId": {
+      "@id": "retool:folder",
+      "@type": "@id"
+    },
+    "createdBy": {
+      "@id": "schema:author",
+      "@type": "@id"
+    },
+    "resources": {
+      "@id": "retool:usesResource",
+      "@container": "@set"
+    },
+
+    "resourceType": {
+      "@id": "retool:resourceType",
+      "@type": "xsd:string"
+    },
+    "displayName": "schema:alternateName",
+
+    "folderType": {
+      "@id": "retool:folderType",
+      "@type": "xsd:string"
+    },
+    "parentFolderId": {
+      "@id": "schema:isPartOf",
+      "@type": "@id"
+    },
+
+    "createdAt": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "updatedAt": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    }
+  }
+}

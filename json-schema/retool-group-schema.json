@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/retool/json-schema/retool-group-schema.json",
+  "title": "Retool Group",
+  "description": "A group in a Retool organization used to manage permissions for apps, resources, and workflows.",
+  "type": "object",
+  "required": ["id", "name"],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The numeric identifier for the group."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the group."
+    },
+    "members": {
+      "type": "array",
+      "description": "Users who are members of this group.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "email": { "type": "string", "format": "email" }
+        }
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the group was created."
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the group was last updated."
+    }
+  }
+}

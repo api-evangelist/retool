@@ -1,0 +1,79 @@
+{
+  "title": "Retool Management API Structure",
+  "description": "JSON structure documenting the key entities, relationships, and data organization of the Retool Management API.",
+  "version": "1.0.0",
+  "entities": {
+    "User": {
+      "description": "A user account in the organization",
+      "primaryKey": "id",
+      "keyType": "uuid",
+      "fields": ["id", "email", "firstName", "lastName", "isAdmin", "isDisabled", "userType", "createdAt", "updatedAt"],
+      "relationships": {
+        "groups": { "type": "many-to-many", "entity": "Group", "via": "group_membership" }
+      }
+    },
+    "Group": {
+      "description": "A permission group for access control",
+      "primaryKey": "id",
+      "keyType": "integer",
+      "fields": ["id", "name", "createdAt", "updatedAt"],
+      "relationships": {
+        "members": { "type": "many-to-many", "entity": "User", "via": "group_membership" }
+      }
+    },
+    "App": {
+      "description": "A Retool visual application",
+      "primaryKey": "id",
+      "keyType": "string",
+      "fields": ["id", "name", "description", "folderId", "createdBy", "createdAt", "updatedAt"],
+      "relationships": {
+        "folder": { "type": "many-to-one", "entity": "Folder" },
+        "resources": { "type": "many-to-many", "entity": "Resource" }
+      }
+    },
+    "Resource": {
+      "description": "A data source connection (database, API, or service)",
+      "primaryKey": "id",
+      "keyType": "string",
+      "fields": ["id", "name", "type", "displayName", "createdAt", "updatedAt"]
+    },
+    "Folder": {
+      "description": "An organizational folder for apps, resources, or workflows",
+      "primaryKey": "id",
+      "keyType": "string",
+      "fields": ["id", "name", "folderType", "parentFolderId", "createdAt"],
+      "relationships": {
+        "parent": { "type": "many-to-one", "entity": "Folder", "selfReferential": true }
+      }
+    }
+  },
+  "endpoints": {
+    "users": {
+      "list": "GET /v1/users",
+      "get": "GET /v1/users/{userId}",
+      "create": "POST /v1/users",
+      "update": "PUT /v1/users/{userId}",
+      "delete": "DELETE /v1/users/{userId}"
+    },
+    "groups": {
+      "list": "GET /v1/groups",
+      "create": "POST /v1/groups",
+      "addMember": "POST /v1/groups/{groupId}/members",
+      "removeMember": "DELETE /v1/groups/{groupId}/members/{userId}"
+    },
+    "apps": {
+      "list": "GET /v1/apps",
+      "get": "GET /v1/apps/{appId}",
+      "create": "POST /v1/apps",
+      "update": "PUT /v1/apps/{appId}",
+      "delete": "DELETE /v1/apps/{appId}"
+    },
+    "resources": {
+      "list": "GET /v1/resources"
+    },
+    "folders": {
+      "list": "GET /v1/folders",
+      "create": "POST /v1/folders"
+    }
+  }
+}

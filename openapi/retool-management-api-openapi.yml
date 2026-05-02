@@ -1,0 +1,1003 @@
+openapi: 3.1.0
+info:
+  title: Retool Management API
+  description: >-
+    The Retool Management API enables administrators to programmatically manage
+    users, groups, permissions, apps, resources, workflows, folders, spaces, and
+    source control integrations within a Retool organization. Authenticated via
+    Bearer token generated in workspace settings. The API also supports SCIM 2.0
+    for enterprise identity provider provisioning via Okta and Azure AD.
+  version: 1.0.0
+  contact:
+    name: Retool Support
+    url: https://support.retool.com
+  license:
+    name: Retool Terms of Service
+    url: https://retool.com/terms
+  termsOfService: https://retool.com/terms
+
+servers:
+  - url: https://api.retool.com/v1
+    description: Retool Cloud API
+
+security:
+  - bearerAuth: []
+
+tags:
+  - name: Users
+    description: >-
+      Create, read, update, and delete users within a Retool organization.
+      Manage user roles (admin, standard, end-user) and activation status.
+  - name: Groups
+    description: >-
+      Manage groups and group membership. Groups control access to apps,
+      resources, and workflows within the organization.
+  - name: Permissions
+    description: >-
+      Manage permissions for apps, resources, workflows, and folders.
+      Control which groups and users can access specific items.
+  - name: Apps
+    description: >-
+      Create and manage Retool applications. Apps are the core visual
+      building blocks created in the Retool editor.
+  - name: Resources
+    description: >-
+      Manage data source connections (databases, APIs, services) that
+      power Retool queries.
+  - name: Folders
+    description: >-
+      Organize apps, resources, and workflows into folders for better
+      team organization.
+  - name: Source Control
+    description: >-
+      Manage Git-based source control integration for apps, enabling
+      version control and CI/CD workflows.
+
+paths:
+  /users:
+    get:
+      operationId: listUsers
+      summary: List Users
+      description: >-
+        Retrieves a paginated list of all users in the Retool organization.
+        Returns user profiles including email, name, admin status, and group
+        memberships.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/pageSize'
+      responses:
+        '200':
+          description: Successfully retrieved a list of users.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      operationId: createUser
+      summary: Create User
+      description: >-
+        Creates a new user in the Retool organization. The email address must
+        be unique. User type determines default access level: default users
+        have standard access while endUser accounts have limited access to
+        embedded applications.
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+      responses:
+        '201':
+          description: Successfully created a new user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /users/{userId}:
+    get:
+      operationId: getUser
+      summary: Get User
+      description: >-
+        Retrieves the details of a specific user by their unique identifier.
+        Returns the user's profile, admin status, and group memberships.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/userId'
+      responses:
+        '200':
+          description: Successfully retrieved the user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    put:
+      operationId: updateUser
+      summary: Update User
+      description: >-
+        Updates the details of a specific user. Supports updating the user's
+        name, admin status, and active/disabled state. Uses full PUT semantics
+        so all updatable fields should be provided.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/userId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequest'
+      responses:
+        '200':
+          description: Successfully updated the user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    delete:
+      operationId: deleteUser
+      summary: Delete User
+      description: >-
+        Permanently removes a user from the Retool organization. This action
+        cannot be undone. The user will lose access to all apps and resources.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/userId'
+      responses:
+        '204':
+          description: Successfully deleted the user.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /groups:
+    get:
+      operationId: listGroups
+      summary: List Groups
+      description: >-
+        Retrieves all groups within the Retool organization. Groups are used
+        to manage access permissions for apps, resources, and workflows.
+      tags:
+        - Groups
+      responses:
+        '200':
+          description: Successfully retrieved a list of groups.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      operationId: createGroup
+      summary: Create Group
+      description: >-
+        Creates a new group within the Retool organization. Groups can be
+        used to control access to apps, resources, and workflows.
+      tags:
+        - Groups
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateGroupRequest'
+      responses:
+        '201':
+          description: Successfully created a new group.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /groups/{groupId}/members:
+    post:
+      operationId: addGroupMember
+      summary: Add Member to Group
+      description: >-
+        Adds a user to a group, granting them the permissions associated
+        with that group. The user must already exist in the organization.
+      tags:
+        - Groups
+      parameters:
+        - $ref: '#/components/parameters/groupId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddGroupMemberRequest'
+      responses:
+        '200':
+          description: Successfully added the user to the group.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /groups/{groupId}/members/{userId}:
+    delete:
+      operationId: removeGroupMember
+      summary: Remove Member from Group
+      description: >-
+        Removes a user from a group, revoking the permissions associated
+        with that group. The user remains in the organization but loses
+        access granted by group membership.
+      tags:
+        - Groups
+      parameters:
+        - $ref: '#/components/parameters/groupId'
+        - $ref: '#/components/parameters/userId'
+      responses:
+        '204':
+          description: Successfully removed the user from the group.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /apps:
+    get:
+      operationId: listApps
+      summary: List Apps
+      description: >-
+        Retrieves a list of all applications within the Retool organization.
+        Returns app metadata including name, description, creator, and folder
+        location.
+      tags:
+        - Apps
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/pageSize'
+      responses:
+        '200':
+          description: Successfully retrieved a list of apps.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      operationId: createApp
+      summary: Create App
+      description: >-
+        Creates a new application within the Retool organization. The app
+        will be empty and can be edited in the Retool visual editor.
+      tags:
+        - Apps
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAppRequest'
+      responses:
+        '201':
+          description: Successfully created a new app.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/App'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /apps/{appId}:
+    get:
+      operationId: getApp
+      summary: Get App
+      description: >-
+        Retrieves the details of a specific app by its unique identifier.
+        Returns the app's metadata, configuration, and access information.
+      tags:
+        - Apps
+      parameters:
+        - $ref: '#/components/parameters/appId'
+      responses:
+        '200':
+          description: Successfully retrieved the app.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/App'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    put:
+      operationId: updateApp
+      summary: Update App
+      description: >-
+        Updates the metadata of a specific app such as its name, description,
+        or folder location.
+      tags:
+        - Apps
+      parameters:
+        - $ref: '#/components/parameters/appId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAppRequest'
+      responses:
+        '200':
+          description: Successfully updated the app.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/App'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    delete:
+      operationId: deleteApp
+      summary: Delete App
+      description: >-
+        Permanently deletes an app from the Retool organization. This action
+        cannot be undone.
+      tags:
+        - Apps
+      parameters:
+        - $ref: '#/components/parameters/appId'
+      responses:
+        '204':
+          description: Successfully deleted the app.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /resources:
+    get:
+      operationId: listResources
+      summary: List Resources
+      description: >-
+        Retrieves all data source resource connections configured in the
+        Retool organization, including databases, REST APIs, and third-party
+        service integrations.
+      tags:
+        - Resources
+      responses:
+        '200':
+          description: Successfully retrieved a list of resources.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /folders:
+    get:
+      operationId: listFolders
+      summary: List Folders
+      description: >-
+        Retrieves all folders within the Retool organization. Folders are
+        used to organize apps, resources, and workflows.
+      tags:
+        - Folders
+      parameters:
+        - name: folderType
+          in: query
+          required: false
+          description: Filter folders by type (app, resource, workflow).
+          schema:
+            type: string
+            enum:
+              - app
+              - resource
+              - workflow
+      responses:
+        '200':
+          description: Successfully retrieved a list of folders.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FolderListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      operationId: createFolder
+      summary: Create Folder
+      description: >-
+        Creates a new folder in the Retool organization to organize apps,
+        resources, or workflows.
+      tags:
+        - Folders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFolderRequest'
+      responses:
+        '201':
+          description: Successfully created a new folder.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Folder'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: >-
+        Bearer token generated in Retool workspace settings under API Access Tokens.
+        Format: Authorization: Bearer <token>
+
+  parameters:
+    userId:
+      name: userId
+      in: path
+      required: true
+      description: The unique UUID identifier of the user.
+      schema:
+        type: string
+        format: uuid
+
+    groupId:
+      name: groupId
+      in: path
+      required: true
+      description: The numeric identifier of the group.
+      schema:
+        type: integer
+
+    appId:
+      name: appId
+      in: path
+      required: true
+      description: The unique identifier of the app.
+      schema:
+        type: string
+
+    page:
+      name: page
+      in: query
+      required: false
+      description: Page number for pagination (1-based).
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+
+    pageSize:
+      name: pageSize
+      in: query
+      required: false
+      description: Number of records per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 100
+
+  schemas:
+    User:
+      type: object
+      description: A Retool user account.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier for the user.
+        email:
+          type: string
+          format: email
+          description: The user's email address (unique within the organization).
+        firstName:
+          type: string
+          description: The user's first name.
+        lastName:
+          type: string
+          description: The user's last name.
+        isAdmin:
+          type: boolean
+          description: Whether the user has administrator privileges.
+        isDisabled:
+          type: boolean
+          description: Whether the user account is disabled.
+        userType:
+          type: string
+          description: >-
+            The user type determining default access level. Default users
+            have standard access; endUser accounts have limited access
+            to embedded applications.
+          enum:
+            - default
+            - endUser
+        groups:
+          type: array
+          description: Groups the user is a member of.
+          items:
+            $ref: '#/components/schemas/GroupRef'
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the user account was created.
+        updatedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the user account was last updated.
+
+    CreateUserRequest:
+      type: object
+      required:
+        - email
+      description: Request body for creating a new user.
+      properties:
+        email:
+          type: string
+          format: email
+          description: The email address for the new user (must be unique).
+        firstName:
+          type: string
+          description: The user's first name.
+        lastName:
+          type: string
+          description: The user's last name.
+        isAdmin:
+          type: boolean
+          description: Whether the user should have administrator privileges.
+          default: false
+        userType:
+          type: string
+          description: The user type (default or endUser).
+          enum:
+            - default
+            - endUser
+          default: default
+
+    UpdateUserRequest:
+      type: object
+      description: Request body for updating an existing user.
+      properties:
+        firstName:
+          type: string
+          description: The user's first name.
+        lastName:
+          type: string
+          description: The user's last name.
+        isAdmin:
+          type: boolean
+          description: Whether the user should have administrator privileges.
+        isDisabled:
+          type: boolean
+          description: Whether to disable the user account.
+
+    UserListResponse:
+      type: object
+      description: Paginated list of users.
+      properties:
+        data:
+          type: array
+          description: Array of user objects.
+          items:
+            $ref: '#/components/schemas/User'
+        total:
+          type: integer
+          description: Total number of users in the organization.
+        page:
+          type: integer
+          description: Current page number.
+        pageSize:
+          type: integer
+          description: Number of records per page.
+
+    Group:
+      type: object
+      description: A Retool group for managing permissions.
+      properties:
+        id:
+          type: integer
+          description: The numeric identifier for the group.
+        name:
+          type: string
+          description: The name of the group.
+        members:
+          type: array
+          description: Users who are members of this group.
+          items:
+            $ref: '#/components/schemas/UserRef'
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the group was created.
+        updatedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the group was last updated.
+
+    GroupRef:
+      type: object
+      description: A reference to a group.
+      properties:
+        id:
+          type: integer
+          description: The numeric group identifier.
+        name:
+          type: string
+          description: The group name.
+
+    UserRef:
+      type: object
+      description: A reference to a user.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The user UUID.
+        email:
+          type: string
+          format: email
+          description: The user's email address.
+
+    CreateGroupRequest:
+      type: object
+      required:
+        - name
+      description: Request body for creating a new group.
+      properties:
+        name:
+          type: string
+          description: The name of the new group.
+
+    AddGroupMemberRequest:
+      type: object
+      required:
+        - userId
+      description: Request body for adding a user to a group.
+      properties:
+        userId:
+          type: string
+          format: uuid
+          description: The UUID of the user to add to the group.
+
+    GroupListResponse:
+      type: object
+      description: List of groups.
+      properties:
+        data:
+          type: array
+          description: Array of group objects.
+          items:
+            $ref: '#/components/schemas/Group'
+
+    App:
+      type: object
+      description: A Retool application.
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the app.
+        name:
+          type: string
+          description: The name of the application.
+        description:
+          type: string
+          description: A description of the application's purpose.
+        folderId:
+          type: string
+          description: The identifier of the folder containing this app.
+        createdBy:
+          type: string
+          description: The email of the user who created the app.
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the app was created.
+        updatedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the app was last updated.
+        resources:
+          type: array
+          description: Resource identifiers used by this app.
+          items:
+            type: string
+
+    CreateAppRequest:
+      type: object
+      required:
+        - name
+      description: Request body for creating a new app.
+      properties:
+        name:
+          type: string
+          description: The name of the new application.
+        description:
+          type: string
+          description: A description of the application's purpose.
+        folderId:
+          type: string
+          description: The folder to place the app in.
+
+    UpdateAppRequest:
+      type: object
+      description: Request body for updating an app's metadata.
+      properties:
+        name:
+          type: string
+          description: Updated name for the application.
+        description:
+          type: string
+          description: Updated description for the application.
+        folderId:
+          type: string
+          description: Move the app to a different folder.
+
+    AppListResponse:
+      type: object
+      description: Paginated list of apps.
+      properties:
+        data:
+          type: array
+          description: Array of app objects.
+          items:
+            $ref: '#/components/schemas/App'
+        total:
+          type: integer
+          description: Total number of apps in the organization.
+
+    Resource:
+      type: object
+      description: A Retool data source resource connection.
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the resource.
+        name:
+          type: string
+          description: The name of the resource.
+        type:
+          type: string
+          description: >-
+            The type of resource (e.g., postgresql, mysql, restapi, mongodb,
+            snowflake, googlesheets, etc.).
+        displayName:
+          type: string
+          description: The human-readable display name of the resource type.
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the resource was created.
+        updatedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the resource was last updated.
+
+    ResourceListResponse:
+      type: object
+      description: List of data source resources.
+      properties:
+        data:
+          type: array
+          description: Array of resource objects.
+          items:
+            $ref: '#/components/schemas/Resource'
+
+    Folder:
+      type: object
+      description: A Retool folder for organizing apps, resources, or workflows.
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the folder.
+        name:
+          type: string
+          description: The name of the folder.
+        folderType:
+          type: string
+          description: The type of content this folder organizes.
+          enum:
+            - app
+            - resource
+            - workflow
+        parentFolderId:
+          type: string
+          description: The identifier of the parent folder, if nested.
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the folder was created.
+
+    CreateFolderRequest:
+      type: object
+      required:
+        - name
+        - folderType
+      description: Request body for creating a new folder.
+      properties:
+        name:
+          type: string
+          description: The name of the new folder.
+        folderType:
+          type: string
+          description: The type of content this folder will organize.
+          enum:
+            - app
+            - resource
+            - workflow
+        parentFolderId:
+          type: string
+          description: Place the folder inside another folder.
+
+    FolderListResponse:
+      type: object
+      description: List of folders.
+      properties:
+        data:
+          type: array
+          description: Array of folder objects.
+          items:
+            $ref: '#/components/schemas/Folder'
+
+    Error:
+      type: object
+      description: An error response.
+      properties:
+        message:
+          type: string
+          description: A human-readable error message.
+        code:
+          type: string
+          description: A machine-readable error code.
+
+  responses:
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    Unauthorized:
+      description: Authentication failed. The Bearer token is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    Forbidden:
+      description: Access denied. The token does not have the required permissions.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    Conflict:
+      description: A conflict occurred, such as a duplicate email address.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    InternalServerError:
+      description: An internal server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

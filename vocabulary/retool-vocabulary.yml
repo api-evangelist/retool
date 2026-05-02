@@ -1,0 +1,170 @@
+name: Retool Vocabulary
+description: >-
+  Domain vocabulary for the Retool low-code platform covering key concepts,
+  entities, access control terms, and platform capabilities.
+version: 1.0.0
+created: '2026-05-02'
+modified: '2026-05-02'
+
+terms:
+  - term: App
+    definition: >-
+      A visual application built in the Retool editor by combining UI components
+      and connecting them to queries against data sources. Apps can be internal
+      tools, dashboards, admin panels, or customer-facing embedded applications.
+    tags:
+      - Core Concept
+      - UI
+
+  - term: AppGen
+    definition: >-
+      AI-powered application generation feature that creates Retool apps from
+      natural language descriptions, dramatically accelerating development time.
+    tags:
+      - AI
+      - Feature
+
+  - term: Component
+    definition: >-
+      A pre-built UI element in the Retool editor such as tables, forms, buttons,
+      charts, maps, or custom widgets. Components are dragged onto a canvas and
+      configured with data bindings.
+    tags:
+      - Core Concept
+      - UI
+
+  - term: Custom Component
+    definition: >-
+      A React or HTML/JavaScript component built outside of Retool and embedded
+      into the canvas via the Custom Component API. Receives data from the Retool
+      application context through a props object.
+    tags:
+      - Extensibility
+      - UI
+
+  - term: Data Source
+    definition: >-
+      A configured connection to an external database, API, or service that
+      powers Retool queries. Retool supports 70+ native integrations including
+      PostgreSQL, MySQL, MongoDB, Snowflake, REST APIs, and GraphQL.
+    tags:
+      - Core Concept
+      - Integration
+
+  - term: End User
+    definition: >-
+      A user type in Retool with limited access restricted to embedded or
+      published applications, as opposed to default users who can access the
+      Retool editor and builder tools.
+    tags:
+      - Access Control
+      - User Types
+
+  - term: Folder
+    definition: >-
+      An organizational container for apps, resources, or workflows. Folders
+      support hierarchy through parent-child relationships and can be
+      filtered by type.
+    tags:
+      - Organization
+      - Structure
+
+  - term: Group
+    definition: >-
+      A named collection of users used to manage permissions in bulk. Groups
+      control access to apps, resources, and workflows. The "All Users" group
+      is a built-in group containing all organization members.
+    tags:
+      - Access Control
+      - Core Concept
+
+  - term: Module
+    definition: >-
+      A reusable Retool app component that can be embedded in other apps as
+      a building block, enabling shared UI patterns across multiple applications.
+    tags:
+      - Reusability
+      - UI
+
+  - term: Permission
+    definition: >-
+      An access control rule governing whether a user or group can view, edit,
+      or use a specific app, resource, workflow, or folder.
+    tags:
+      - Access Control
+      - Security
+
+  - term: Query
+    definition: >-
+      A call to a data source configured within a Retool app. Queries can be
+      SQL statements, REST API calls, GraphQL queries, or native connector
+      methods. Queries power the data shown in UI components.
+    tags:
+      - Core Concept
+      - Data
+
+  - term: Resource
+    definition: >-
+      A saved data source connection configuration (credentials, endpoint,
+      settings) that can be shared across multiple apps. Resources are managed
+      centrally by administrators.
+    tags:
+      - Core Concept
+      - Integration
+
+  - term: SCIM
+    definition: >-
+      System for Cross-domain Identity Management (SCIM 2.0) — an industry
+      standard protocol for automating user provisioning from identity
+      providers like Okta and Azure AD. Available on Retool Enterprise.
+    tags:
+      - Enterprise
+      - Identity
+      - Standards
+
+  - term: Self-Hosted
+    definition: >-
+      A Retool deployment model where the application server runs on the
+      customer's own infrastructure (Docker, Kubernetes, AWS, GCP, Azure).
+      Self-hosted deployments can connect to internal databases without
+      exposing them to the internet.
+    tags:
+      - Deployment
+      - Enterprise
+
+  - term: Space
+    definition: >-
+      An isolated organizational unit within Retool that separates apps,
+      resources, and users from other teams or business units within the
+      same Retool instance.
+    tags:
+      - Enterprise
+      - Organization
+
+  - term: SSO
+    definition: >-
+      Single Sign-On authentication allowing users to access Retool using
+      their organization's identity provider (e.g., Google, Okta, Azure AD,
+      SAML, OIDC).
+    tags:
+      - Authentication
+      - Enterprise
+      - Security
+
+  - term: Workflow
+    definition: >-
+      An automation definition in Retool that chains API calls, database
+      queries, and conditional logic into scheduled or triggered processes.
+      Workflows run server-side without a UI.
+    tags:
+      - Automation
+      - Core Concept
+
+  - term: User Type
+    definition: >-
+      A classification applied to Retool user accounts: 'default' users
+      have full access to the Retool editor and builder; 'endUser' accounts
+      are restricted to consuming published apps.
+    tags:
+      - Access Control
+      - User Types

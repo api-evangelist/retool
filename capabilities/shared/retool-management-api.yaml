@@ -1,0 +1,597 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Retool Management API"
+  description: "REST API for programmatically managing Retool organization users, groups, apps, resources, and folders."
+  tags:
+    - Retool
+    - Administration
+    - Low Code
+    - Internal Tools
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      RETOOL_API_TOKEN: RETOOL_API_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: retool
+      baseUri: https://api.retool.com/v1
+      description: "Retool Management API for organization administration."
+      authentication:
+        type: bearer
+        token: "{{RETOOL_API_TOKEN}}"
+      resources:
+        - name: users
+          path: /users
+          description: "Manage user accounts in the Retool organization."
+          operations:
+            - name: list-users
+              method: GET
+              description: "List all users in the organization with pagination."
+              inputParameters:
+                - name: page
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Page number for pagination."
+                - name: pageSize
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Number of users per page."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-user
+              method: POST
+              description: "Create a new user in the organization."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  email: "{{tools.email}}"
+                  firstName: "{{tools.firstName}}"
+                  lastName: "{{tools.lastName}}"
+                  isAdmin: "{{tools.isAdmin}}"
+                  userType: "{{tools.userType}}"
+        - name: user-by-id
+          path: /users/{userId}
+          description: "Manage a specific user by their UUID."
+          operations:
+            - name: get-user
+              method: GET
+              description: "Retrieve a specific user by their ID."
+              inputParameters:
+                - name: userId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The UUID of the user."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: update-user
+              method: PUT
+              description: "Update a user's profile and access settings."
+              inputParameters:
+                - name: userId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The UUID of the user."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  firstName: "{{tools.firstName}}"
+                  lastName: "{{tools.lastName}}"
+                  isAdmin: "{{tools.isAdmin}}"
+                  isDisabled: "{{tools.isDisabled}}"
+            - name: delete-user
+              method: DELETE
+              description: "Permanently remove a user from the organization."
+              inputParameters:
+                - name: userId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The UUID of the user."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: groups
+          path: /groups
+          description: "Manage groups for permission control."
+          operations:
+            - name: list-groups
+              method: GET
+              description: "List all groups in the organization."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-group
+              method: POST
+              description: "Create a new group."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+        - name: group-members
+          path: /groups/{groupId}/members
+          description: "Manage group membership."
+          operations:
+            - name: add-group-member
+              method: POST
+              description: "Add a user to a group."
+              inputParameters:
+                - name: groupId
+                  in: path
+                  type: integer
+                  required: true
+                  description: "The numeric group identifier."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  userId: "{{tools.userId}}"
+        - name: group-member-by-id
+          path: /groups/{groupId}/members/{userId}
+          description: "Remove a specific member from a group."
+          operations:
+            - name: remove-group-member
+              method: DELETE
+              description: "Remove a user from a group."
+              inputParameters:
+                - name: groupId
+                  in: path
+                  type: integer
+                  required: true
+                  description: "The numeric group identifier."
+                - name: userId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The UUID of the user to remove."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: apps
+          path: /apps
+          description: "Manage Retool applications."
+          operations:
+            - name: list-apps
+              method: GET
+              description: "List all applications in the organization."
+              inputParameters:
+                - name: page
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Page number for pagination."
+                - name: pageSize
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Number of apps per page."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-app
+              method: POST
+              description: "Create a new Retool application."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  description: "{{tools.description}}"
+                  folderId: "{{tools.folderId}}"
+        - name: app-by-id
+          path: /apps/{appId}
+          description: "Manage a specific Retool application."
+          operations:
+            - name: get-app
+              method: GET
+              description: "Retrieve a specific application by its ID."
+              inputParameters:
+                - name: appId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The unique app identifier."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: update-app
+              method: PUT
+              description: "Update an application's metadata."
+              inputParameters:
+                - name: appId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The unique app identifier."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  description: "{{tools.description}}"
+                  folderId: "{{tools.folderId}}"
+            - name: delete-app
+              method: DELETE
+              description: "Permanently delete an application."
+              inputParameters:
+                - name: appId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The unique app identifier."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: resources
+          path: /resources
+          description: "View data source resource connections."
+          operations:
+            - name: list-resources
+              method: GET
+              description: "List all data source resources in the organization."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: folders
+          path: /folders
+          description: "Manage organizational folders."
+          operations:
+            - name: list-folders
+              method: GET
+              description: "List all folders in the organization."
+              inputParameters:
+                - name: folderType
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter by folder type (app, resource, workflow)."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-folder
+              method: POST
+              description: "Create a new organizational folder."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  folderType: "{{tools.folderType}}"
+                  parentFolderId: "{{tools.parentFolderId}}"
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: retool-management-rest
+      resources:
+        - path: /v1/users
+          name: users
+          description: "User management endpoints."
+          operations:
+            - method: GET
+              name: list-users
+              description: "List all users."
+              call: "retool.list-users"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-user
+              description: "Create a new user."
+              call: "retool.create-user"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/users/{userId}
+          name: user-by-id
+          description: "User operations by ID."
+          operations:
+            - method: GET
+              name: get-user
+              description: "Get a specific user."
+              call: "retool.get-user"
+              with:
+                userId: "rest.userId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: PUT
+              name: update-user
+              description: "Update a user."
+              call: "retool.update-user"
+              with:
+                userId: "rest.userId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: DELETE
+              name: delete-user
+              description: "Delete a user."
+              call: "retool.delete-user"
+              with:
+                userId: "rest.userId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/groups
+          name: groups
+          description: "Group management endpoints."
+          operations:
+            - method: GET
+              name: list-groups
+              description: "List all groups."
+              call: "retool.list-groups"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-group
+              description: "Create a new group."
+              call: "retool.create-group"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/apps
+          name: apps
+          description: "Application management endpoints."
+          operations:
+            - method: GET
+              name: list-apps
+              description: "List all apps."
+              call: "retool.list-apps"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-app
+              description: "Create a new app."
+              call: "retool.create-app"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/resources
+          name: resources
+          description: "Resource management endpoints."
+          operations:
+            - method: GET
+              name: list-resources
+              description: "List all resources."
+              call: "retool.list-resources"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: retool-management-mcp
+      transport: http
+      tools:
+        - name: list-users
+          description: "List all users in the Retool organization."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "retool.list-users"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-user
+          description: "Create a new user in the organization."
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "retool.create-user"
+          with:
+            email: "tools.email"
+            firstName: "tools.firstName"
+            lastName: "tools.lastName"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-user
+          description: "Retrieve a specific user by their UUID."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "retool.get-user"
+          with:
+            userId: "tools.userId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: update-user
+          description: "Update a user's profile and access settings."
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: true
+          call: "retool.update-user"
+          with:
+            userId: "tools.userId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: delete-user
+          description: "Permanently delete a user from the organization."
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "retool.delete-user"
+          with:
+            userId: "tools.userId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-groups
+          description: "List all groups in the organization."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "retool.list-groups"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-group
+          description: "Create a new permission group."
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "retool.create-group"
+          with:
+            name: "tools.name"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: add-group-member
+          description: "Add a user to a group."
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "retool.add-group-member"
+          with:
+            groupId: "tools.groupId"
+            userId: "tools.userId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: remove-group-member
+          description: "Remove a user from a group."
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "retool.remove-group-member"
+          with:
+            groupId: "tools.groupId"
+            userId: "tools.userId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-apps
+          description: "List all Retool applications."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "retool.list-apps"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-app
+          description: "Get a specific Retool application by ID."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "retool.get-app"
+          with:
+            appId: "tools.appId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-app
+          description: "Create a new Retool application."
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "retool.create-app"
+          with:
+            name: "tools.name"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: delete-app
+          description: "Permanently delete a Retool application."
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "retool.delete-app"
+          with:
+            appId: "tools.appId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-resources
+          description: "List all data source resource connections."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "retool.list-resources"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-folders
+          description: "List all organizational folders."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "retool.list-folders"
+          outputParameters:
+            - type: object
+              mapping: "$."

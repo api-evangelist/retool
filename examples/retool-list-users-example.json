@@ -1,0 +1,49 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.retool.com/v1/users?page=1&pageSize=10",
+    "headers": {
+      "Authorization": "Bearer YOUR_API_TOKEN",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": [
+        {
+          "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+          "email": "alice@example.com",
+          "firstName": "Alice",
+          "lastName": "Smith",
+          "isAdmin": true,
+          "isDisabled": false,
+          "userType": "default",
+          "groups": [
+            { "id": 1, "name": "All Users" },
+            { "id": 5, "name": "Engineering" }
+          ],
+          "createdAt": "2025-01-15T10:30:00Z",
+          "updatedAt": "2026-03-01T14:00:00Z"
+        },
+        {
+          "id": "b2c3d4e5-f6a7-8901-bcde-fa2345678901",
+          "email": "bob@example.com",
+          "firstName": "Bob",
+          "lastName": "Jones",
+          "isAdmin": false,
+          "isDisabled": false,
+          "userType": "default",
+          "groups": [
+            { "id": 1, "name": "All Users" }
+          ],
+          "createdAt": "2025-06-20T09:15:00Z",
+          "updatedAt": "2025-06-20T09:15:00Z"
+        }
+      ],
+      "total": 47,
+      "page": 1,
+      "pageSize": 10
+    }
+  }
+}
