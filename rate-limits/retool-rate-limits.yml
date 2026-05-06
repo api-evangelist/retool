@@ -4,96 +4,45 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Retool
 providerId: retool
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
-  - Admin Panel
-  - Dashboard
+  - Rate Limiting
   - Internal Tools
   - Low Code
-  - No Code
-  - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Retool API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
-responseCodes:
-  throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
+description: Retool exposes a Management API (apps, themes, resources, folders, spaces, source control,
+  users/groups/permissions, SSO) and a SCIM 2.0 API for identity-provider provisioning. Public Retool
+  documentation does not publish per-second / per-minute rate-limit numbers for these admin APIs; throughput
+  is bounded primarily by plan-tied workflow-run quotas and the per-tenant deployment.
+sources:
+  - https://docs.retool.com/org-users/concepts/retool-api
+  - https://retool.com/pricing
+notes: No public numeric rate limits for the Management or SCIM APIs; the consumption ceiling that is
+  publicly documented is the workflow-runs quota (500/mo Free, 5,000/mo Team), which lives in plans/.
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Retool Management API
-      - Retool SCIM 2.0 API
-      - Retool Platform
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
+  - name: Management API throttling
+    scope: tenant
+    metric: varies
+    limit: 'see https://docs.retool.com/org-users/concepts/retool-api — not numerically published'
+  - name: SCIM 2.0 API throttling
+    scope: tenant
+    metric: varies
+    limit: 'see Retool SCIM 2.0 reference — not numerically published'
+  - name: Workflow runs (plan-bound)
+    scope: tenant
+    metric: workflow_runs_per_month
+    limit: 'depends on plan: Free 500, Team 5,000, Business/Enterprise per contract'
     timeFrame: month
-    applies:
-      - Retool Management API
-      - Retool SCIM 2.0 API
-      - Retool Platform
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Retool Management API
-      - Retool SCIM 2.0 API
-      - Retool Platform
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Retool Management API
-      - Retool SCIM 2.0 API
-      - Retool Platform
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Retool Management API
-      - Retool SCIM 2.0 API
-      - Retool Platform
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: Tenant-Scoped
+    description: Retool API access is scoped to the customer tenant; all administrative calls are authenticated
+      as a Retool API token tied to the org.
+  - name: Plan-Bound Workflow Runs
+    description: The most consequential consumption ceiling is the workflow-runs quota, set by the
+      active subscription plan rather than HTTP throttling.
+  - name: SCIM Recommendation
+    description: Retool documentation recommends the Management API for automation when possible, with
+      SCIM 2.0 used specifically for identity-provider integration.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
