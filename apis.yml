@@ -113,6 +113,75 @@ common:
     url: https://raw.githubusercontent.com/api-evangelist/retool/refs/heads/main/openapi/retool-management-api-openapi.yml
   - type: Vocabulary
     url: https://raw.githubusercontent.com/api-evangelist/retool/refs/heads/main/vocabulary/retool-vocabulary.yml
+  - type: Integrations
+    url: https://retool.com/integrations
+integrations:
+  - name: AlloyDB
+  - name: Amazon Athena
+  - name: Amazon Bedrock
+  - name: Amazon DynamoDB
+  - name: Amazon Knowledge Base
+  - name: Amazon Redshift
+  - name: Amazon S3
+  - name: Anthropic
+  - name: Asana
+  - name: AWS Lambda
+  - name: Azure OpenAI
+  - name: BigID
+  - name: BigQuery
+  - name: Cassandra
+  - name: CircleCI
+  - name: Cohere
+  - name: Cosmos DB
+  - name: CouchDB
+  - name: Custom AI Provider
+  - name: Databricks
+  - name: Datadog
+  - name: Elasticsearch
+  - name: Front
+  - name: GitHub
+  - name: Google Analytics
+  - name: Google Cloud Datastore
+  - name: Google Cloud Storage
+  - name: Google Gemini
+  - name: Google Maps
+  - name: Google Search Console
+  - name: Google Sheets
+  - name: gRPC
+  - name: HubSpot
+  - name: JDBC
+  - name: Jira
+  - name: Kafka (Beta)
+  - name: LaunchDarkly
+  - name: Microsoft SQL Server
+  - name: Microsoft Teams
+  - name: MongoDB
+  - name: Notion
+  - name: OneSignal
+  - name: OpenAI
+  - name: OpenAPI
+  - name: Oracle Database
+  - name: Presto
+  - name: Redis
+  - name: RethinkDB
+  - name: Retool AI
+  - name: Retool API
+  - name: Retool Database
+  - name: Retool Email
+  - name: Retool RPC
+  - name: Retool Storage
+  - name: Retool Vectors
+  - name: Salesforce
+  - name: SAP HANA
+  - name: SendGrid
+  - name: Slack
+  - name: SMTP
+  - name: Snowflake
+  - name: SOAP API
+  - name: Stripe
+  - name: Twilio
+  - name: Vertica
+  - name: Zendesk
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
