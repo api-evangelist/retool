@@ -91,9 +91,9 @@ common:
     url: https://docs.retool.com/reference/api/v2
   - type: Blog
     url: https://retool.com/blog
-  - type: Changelog
+  - type: ChangeLog
     url: https://retool.com/changelog
-  - type: Status
+  - type: StatusPage
     url: https://status.retool.com
   - type: Support
     url: https://support.retool.com
