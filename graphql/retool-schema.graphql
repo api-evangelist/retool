@@ -1,0 +1,954 @@
+# Retool GraphQL Schema
+# Derived from Retool Management REST API v2 and SCIM 2.0
+# Source: https://docs.retool.com/reference/api/v2
+
+scalar DateTime
+scalar JSON
+scalar UUID
+
+# ─────────────────────────────────────────────
+# Enums
+# ─────────────────────────────────────────────
+
+enum AppAccessLevel {
+  PRIVATE
+  PROTECTED
+  PUBLIC
+}
+
+enum ResourceType {
+  REST_API
+  GRAPHQL
+  GRPC
+  POSTGRESQL
+  MYSQL
+  MSSQL
+  MONGODB
+  REDIS
+  ELASTICSEARCH
+  BIGQUERY
+  SNOWFLAKE
+  REDSHIFT
+  S3
+  DYNAMODB
+  GOOGLE_SHEETS
+  SALESFORCE
+  STRIPE
+  SLACK
+  GITHUB
+  CUSTOM
+}
+
+enum PermissionLevel {
+  VIEWER
+  EDITOR
+  OWNER
+  USE
+  OWN
+}
+
+enum WorkflowJobStatus {
+  PENDING
+  RUNNING
+  SUCCEEDED
+  FAILED
+  CANCELLED
+}
+
+enum WorkflowTriggerType {
+  SCHEDULED
+  WEBHOOK
+  MANUAL
+  API
+}
+
+enum GroupType {
+  DEFAULT
+  ADMIN
+  CUSTOM
+}
+
+enum AuditLogAction {
+  CREATE
+  UPDATE
+  DELETE
+  VIEW
+  EXECUTE
+  LOGIN
+  LOGOUT
+  EXPORT
+}
+
+enum AuditLogResourceType {
+  APP
+  RESOURCE
+  USER
+  GROUP
+  QUERY
+  WORKFLOW
+  API_TOKEN
+  FOLDER
+  SOURCE_CONTROL
+}
+
+enum DeploymentStatus {
+  PENDING
+  IN_PROGRESS
+  SUCCEEDED
+  FAILED
+  ROLLED_BACK
+}
+
+enum GitBranchStatus {
+  SYNCED
+  AHEAD
+  BEHIND
+  DIVERGED
+  CONFLICT
+}
+
+enum SSOProvider {
+  GOOGLE
+  OKTA
+  AZURE_AD
+  SAML
+  OIDC
+  GITHUB
+}
+
+enum ColumnType {
+  TEXT
+  NUMBER
+  BOOLEAN
+  DATE
+  DATETIME
+  JSON
+  UUID
+  ARRAY
+}
+
+enum ThemeMode {
+  LIGHT
+  DARK
+  SYSTEM
+}
+
+enum SecretType {
+  ENVIRONMENT_VARIABLE
+  API_KEY
+  CERTIFICATE
+  OAUTH_TOKEN
+}
+
+# ─────────────────────────────────────────────
+# App Domain
+# ─────────────────────────────────────────────
+
+type App {
+  id: UUID!
+  name: String!
+  description: String
+  folderId: UUID
+  folder: Folder
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  createdBy: User
+  updatedBy: User
+  isGlobal: Boolean!
+  isMobile: Boolean!
+  accessLevel: AppAccessLevel!
+  currentVersion: AppVersion
+  versions: [AppVersion!]!
+  permissions: [AppPermission!]!
+  embeds: [AppEmbed!]!
+  environment: AppEnvironment
+  theme: Theme
+  pageCount: Int
+  customComponents: [CustomComponent!]!
+  globalWidgets: [GlobalWidget!]!
+}
+
+type AppVersion {
+  id: UUID!
+  appId: UUID!
+  app: App!
+  versionNumber: Int!
+  label: String
+  createdAt: DateTime!
+  createdBy: User
+  isDeployed: Boolean!
+  deployedAt: DateTime
+  changelog: String
+  snapshot: JSON
+}
+
+type AppPermission {
+  id: UUID!
+  appId: UUID!
+  app: App!
+  subjectType: String!
+  subjectId: UUID!
+  user: User
+  group: Group
+  permissionLevel: PermissionLevel!
+  grantedAt: DateTime!
+  grantedBy: User
+}
+
+type AppEmbed {
+  id: UUID!
+  appId: UUID!
+  app: App!
+  embedUrl: String!
+  allowedOrigins: [String!]!
+  isActive: Boolean!
+  createdAt: DateTime!
+  expiresAt: DateTime
+}
+
+type AppEnvironment {
+  id: UUID!
+  appId: UUID!
+  name: String!
+  variables: JSON
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ─────────────────────────────────────────────
+# Resource Domain
+# ─────────────────────────────────────────────
+
+type Resource {
+  id: UUID!
+  name: String!
+  displayName: String
+  type: ResourceType!
+  config: ResourceConfig
+  folderId: UUID
+  folder: Folder
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  createdBy: User
+  isGlobal: Boolean!
+  environment: String
+  queries: [Query!]!
+}
+
+type ResourceConfig {
+  id: UUID!
+  resourceId: UUID!
+  host: String
+  port: Int
+  database: String
+  username: String
+  ssl: Boolean
+  baseUrl: String
+  headers: JSON
+  authType: String
+  options: JSON
+  updatedAt: DateTime!
+}
+
+# ─────────────────────────────────────────────
+# Query Domain
+# ─────────────────────────────────────────────
+
+type Query {
+  id: UUID!
+  name: String!
+  resourceId: UUID
+  resource: Resource
+  appId: UUID
+  app: App
+  queryBody: JSON!
+  transformEnabled: Boolean!
+  transformCode: String
+  runOnPageLoad: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  createdBy: User
+}
+
+type QueryLibrary {
+  id: UUID!
+  name: String!
+  description: String
+  resourceId: UUID!
+  resource: Resource!
+  queryBody: JSON!
+  transformEnabled: Boolean!
+  transformCode: String
+  tags: [String!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  createdBy: User
+}
+
+# ─────────────────────────────────────────────
+# Workflow Domain
+# ─────────────────────────────────────────────
+
+type WorkflowJob {
+  id: UUID!
+  workflowId: UUID!
+  status: WorkflowJobStatus!
+  triggerId: UUID
+  trigger: WorkflowTrigger
+  startedAt: DateTime
+  completedAt: DateTime
+  error: String
+  input: JSON
+  output: JSON
+  logs: [WorkflowLog!]!
+  createdAt: DateTime!
+}
+
+type WorkflowTrigger {
+  id: UUID!
+  workflowId: UUID!
+  type: WorkflowTriggerType!
+  cronExpression: String
+  webhookUrl: String
+  isActive: Boolean!
+  lastTriggeredAt: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type WorkflowLog {
+  id: UUID!
+  jobId: UUID!
+  level: String!
+  message: String!
+  timestamp: DateTime!
+  metadata: JSON
+}
+
+# ─────────────────────────────────────────────
+# Organization Domain
+# ─────────────────────────────────────────────
+
+type User {
+  id: UUID!
+  email: String!
+  firstName: String
+  lastName: String
+  displayName: String
+  avatar: String
+  isAdmin: Boolean!
+  isActive: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  lastLoginAt: DateTime
+  groups: [Group!]!
+  permissions: [Permission!]!
+  apiTokens: [ApiToken!]!
+}
+
+type Group {
+  id: UUID!
+  name: String!
+  displayName: String
+  description: String
+  type: GroupType!
+  isDefault: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  members: [User!]!
+  permissions: [Permission!]!
+  memberCount: Int!
+  externalId: String
+}
+
+type Permission {
+  id: UUID!
+  subjectType: String!
+  subjectId: UUID!
+  user: User
+  group: Group
+  objectType: String!
+  objectId: UUID!
+  permissionLevel: PermissionLevel!
+  grantedAt: DateTime!
+  grantedBy: User
+}
+
+type Folder {
+  id: UUID!
+  name: String!
+  parentFolderId: UUID
+  parentFolder: Folder
+  children: [Folder!]!
+  apps: [App!]!
+  resources: [Resource!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  createdBy: User
+}
+
+type Space {
+  id: UUID!
+  name: String!
+  slug: String!
+  description: String
+  isDefault: Boolean!
+  folders: [Folder!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ─────────────────────────────────────────────
+# Enterprise Domain
+# ─────────────────────────────────────────────
+
+type AuditLog {
+  id: UUID!
+  action: AuditLogAction!
+  resourceType: AuditLogResourceType!
+  resourceId: UUID
+  resourceName: String
+  actorId: UUID
+  actor: User
+  actorEmail: String
+  ipAddress: String
+  userAgent: String
+  metadata: JSON
+  createdAt: DateTime!
+}
+
+type Usage {
+  id: UUID!
+  organizationId: UUID!
+  period: String!
+  activeUsers: Int!
+  totalApps: Int!
+  totalQueries: Int!
+  workflowRuns: Int!
+  apiCalls: Int!
+  storageBytes: Int!
+  createdAt: DateTime!
+}
+
+type SSO {
+  id: UUID!
+  provider: SSOProvider!
+  isActive: Boolean!
+  config: SSOConfig!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type SSOConfig {
+  id: UUID!
+  ssoId: UUID!
+  entryPoint: String
+  issuer: String
+  certificate: String
+  clientId: String
+  discoveryUrl: String
+  scopes: [String!]!
+  attributeMapping: JSON
+  updatedAt: DateTime!
+}
+
+type EnterpriseConfig {
+  id: UUID!
+  organizationId: UUID!
+  customDomain: String
+  allowedEmailDomains: [String!]!
+  enforceSSO: Boolean!
+  sessionTimeout: Int
+  ipAllowlist: [String!]!
+  auditLogRetentionDays: Int!
+  updatedAt: DateTime!
+}
+
+type SCIMConfig {
+  id: UUID!
+  organizationId: UUID!
+  isEnabled: Boolean!
+  token: String
+  endpoint: String!
+  supportedResources: [String!]!
+  lastSyncAt: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ─────────────────────────────────────────────
+# Database Domain (RetoolDB)
+# ─────────────────────────────────────────────
+
+type RetoolDB {
+  id: UUID!
+  name: String!
+  organizationId: UUID!
+  tables: [Table!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Table {
+  id: UUID!
+  databaseId: UUID!
+  database: RetoolDB!
+  name: String!
+  description: String
+  columns: [Column!]!
+  rowCount: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Column {
+  id: UUID!
+  tableId: UUID!
+  table: Table!
+  name: String!
+  type: ColumnType!
+  isNullable: Boolean!
+  isPrimaryKey: Boolean!
+  isUnique: Boolean!
+  defaultValue: String
+  description: String
+  position: Int!
+}
+
+type TableRow {
+  id: UUID!
+  tableId: UUID!
+  table: Table!
+  data: JSON!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Row {
+  id: UUID!
+  tableId: UUID!
+  values: JSON!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ─────────────────────────────────────────────
+# Platform Domain
+# ─────────────────────────────────────────────
+
+type Theme {
+  id: UUID!
+  name: String!
+  mode: ThemeMode!
+  primaryColor: String
+  accentColor: String
+  backgroundColor: String
+  fontFamily: String
+  customCSS: String
+  isDefault: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type BrandingConfig {
+  id: UUID!
+  organizationId: UUID!
+  logoUrl: String
+  faviconUrl: String
+  primaryColor: String
+  companyName: String
+  customDomain: String
+  updatedAt: DateTime!
+}
+
+type CustomComponent {
+  id: UUID!
+  name: String!
+  description: String
+  componentCode: String!
+  schemaDefinition: JSON!
+  version: String!
+  isPublished: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  createdBy: User
+}
+
+type GlobalWidget {
+  id: UUID!
+  name: String!
+  description: String
+  appId: UUID!
+  app: App!
+  widgetConfig: JSON!
+  isPublished: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ─────────────────────────────────────────────
+# Developer Domain
+# ─────────────────────────────────────────────
+
+type ApiToken {
+  id: UUID!
+  name: String!
+  description: String
+  userId: UUID!
+  user: User!
+  token: String
+  lastUsedAt: DateTime
+  expiresAt: DateTime
+  isActive: Boolean!
+  createdAt: DateTime!
+}
+
+type Secret {
+  id: UUID!
+  name: String!
+  type: SecretType!
+  description: String
+  isRotatable: Boolean!
+  lastRotatedAt: DateTime
+  expiresAt: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  createdBy: User
+}
+
+type Agent {
+  id: UUID!
+  name: String!
+  description: String
+  modelProvider: String!
+  modelId: String!
+  systemPrompt: String
+  tools: [JSON!]!
+  resourceId: UUID
+  resource: Resource
+  isActive: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  createdBy: User
+}
+
+# ─────────────────────────────────────────────
+# Source Control Domain
+# ─────────────────────────────────────────────
+
+type SourceControl {
+  id: UUID!
+  organizationId: UUID!
+  provider: String!
+  repositoryUrl: String!
+  defaultBranch: String!
+  isActive: Boolean!
+  branches: [GitBranch!]!
+  commits: [Commit!]!
+  deployments: [Deployment!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type GitBranch {
+  id: UUID!
+  sourceControlId: UUID!
+  sourceControl: SourceControl!
+  name: String!
+  status: GitBranchStatus!
+  aheadCount: Int!
+  behindCount: Int!
+  lastCommitSha: String
+  lastCommit: Commit
+  isProtected: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Commit {
+  id: UUID!
+  sourceControlId: UUID!
+  sha: String!
+  message: String!
+  author: String!
+  authorEmail: String!
+  branchName: String!
+  committedAt: DateTime!
+  filesChanged: Int!
+  additions: Int!
+  deletions: Int!
+  metadata: JSON
+}
+
+type Deployment {
+  id: UUID!
+  sourceControlId: UUID!
+  sourceControl: SourceControl!
+  branchName: String!
+  commitSha: String!
+  commit: Commit
+  status: DeploymentStatus!
+  environment: String!
+  deployedBy: User
+  startedAt: DateTime!
+  completedAt: DateTime
+  error: String
+  rollbackDeploymentId: UUID
+}
+
+# ─────────────────────────────────────────────
+# Pagination & Connection Types
+# ─────────────────────────────────────────────
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+  totalCount: Int!
+}
+
+type AppConnection {
+  edges: [AppEdge!]!
+  pageInfo: PageInfo!
+}
+
+type AppEdge {
+  node: App!
+  cursor: String!
+}
+
+type UserConnection {
+  edges: [UserEdge!]!
+  pageInfo: PageInfo!
+}
+
+type UserEdge {
+  node: User!
+  cursor: String!
+}
+
+type AuditLogConnection {
+  edges: [AuditLogEdge!]!
+  pageInfo: PageInfo!
+}
+
+type AuditLogEdge {
+  node: AuditLog!
+  cursor: String!
+}
+
+# ─────────────────────────────────────────────
+# Input Types
+# ─────────────────────────────────────────────
+
+input CreateAppInput {
+  name: String!
+  description: String
+  folderId: UUID
+  isMobile: Boolean
+  accessLevel: AppAccessLevel
+  themeId: UUID
+}
+
+input UpdateAppInput {
+  name: String
+  description: String
+  folderId: UUID
+  accessLevel: AppAccessLevel
+  themeId: UUID
+}
+
+input CreateUserInput {
+  email: String!
+  firstName: String
+  lastName: String
+  isAdmin: Boolean
+  groupIds: [UUID!]
+}
+
+input UpdateUserInput {
+  firstName: String
+  lastName: String
+  isAdmin: Boolean
+}
+
+input CreateGroupInput {
+  name: String!
+  displayName: String
+  description: String
+}
+
+input UpdateGroupInput {
+  name: String
+  displayName: String
+  description: String
+}
+
+input CreateResourceInput {
+  name: String!
+  type: ResourceType!
+  config: JSON!
+  folderId: UUID
+  isGlobal: Boolean
+  environment: String
+}
+
+input UpdateResourceInput {
+  name: String
+  config: JSON
+  folderId: UUID
+  isGlobal: Boolean
+}
+
+input CreateFolderInput {
+  name: String!
+  parentFolderId: UUID
+  spaceId: UUID
+}
+
+input AppFilter {
+  folderId: UUID
+  accessLevel: AppAccessLevel
+  isMobile: Boolean
+  createdAfter: DateTime
+  createdBefore: DateTime
+  searchTerm: String
+}
+
+input AuditLogFilter {
+  action: AuditLogAction
+  resourceType: AuditLogResourceType
+  actorId: UUID
+  startDate: DateTime
+  endDate: DateTime
+}
+
+input PaginationInput {
+  first: Int
+  after: String
+  last: Int
+  before: String
+}
+
+# ─────────────────────────────────────────────
+# Root Types
+# ─────────────────────────────────────────────
+
+type RootQuery {
+  # App queries
+  app(id: UUID!): App
+  apps(filter: AppFilter, pagination: PaginationInput): AppConnection!
+
+  # Resource queries
+  resource(id: UUID!): Resource
+  resources: [Resource!]!
+
+  # Query queries
+  queryLibraryItem(id: UUID!): QueryLibrary
+  queryLibrary: [QueryLibrary!]!
+
+  # Workflow queries
+  workflowJob(id: UUID!): WorkflowJob
+  workflowJobs(workflowId: UUID!): [WorkflowJob!]!
+  workflowTrigger(id: UUID!): WorkflowTrigger
+
+  # User & Group queries
+  user(id: UUID!): User
+  users(pagination: PaginationInput): UserConnection!
+  group(id: UUID!): Group
+  groups: [Group!]!
+  me: User
+
+  # Organization queries
+  folder(id: UUID!): Folder
+  folders: [Folder!]!
+  space(id: UUID!): Space
+  spaces: [Space!]!
+
+  # Database queries
+  retoolDB: RetoolDB
+  table(id: UUID!): Table
+  tableRows(tableId: UUID!, limit: Int, offset: Int): [TableRow!]!
+
+  # Enterprise queries
+  auditLogs(filter: AuditLogFilter, pagination: PaginationInput): AuditLogConnection!
+  usage(period: String!): Usage
+  sso: SSO
+  enterpriseConfig: EnterpriseConfig
+  scimConfig: SCIMConfig
+
+  # Source control queries
+  sourceControl: SourceControl
+  gitBranch(id: UUID!): GitBranch
+  gitBranches: [GitBranch!]!
+  commit(sha: String!): Commit
+  deployments: [Deployment!]!
+
+  # Platform queries
+  theme(id: UUID!): Theme
+  themes: [Theme!]!
+  brandingConfig: BrandingConfig
+  customComponents: [CustomComponent!]!
+  globalWidgets: [GlobalWidget!]!
+
+  # Developer queries
+  apiToken(id: UUID!): ApiToken
+  apiTokens: [ApiToken!]!
+  agent(id: UUID!): Agent
+  agents: [Agent!]!
+}
+
+type Mutation {
+  # App mutations
+  createApp(input: CreateAppInput!): App!
+  updateApp(id: UUID!, input: UpdateAppInput!): App!
+  deleteApp(id: UUID!): Boolean!
+  deployApp(appId: UUID!, versionId: UUID): AppVersion!
+
+  # User mutations
+  createUser(input: CreateUserInput!): User!
+  updateUser(id: UUID!, input: UpdateUserInput!): User!
+  deleteUser(id: UUID!): Boolean!
+  addUserToGroup(userId: UUID!, groupId: UUID!): Group!
+  removeUserFromGroup(userId: UUID!, groupId: UUID!): Group!
+
+  # Group mutations
+  createGroup(input: CreateGroupInput!): Group!
+  updateGroup(id: UUID!, input: UpdateGroupInput!): Group!
+  deleteGroup(id: UUID!): Boolean!
+
+  # Resource mutations
+  createResource(input: CreateResourceInput!): Resource!
+  updateResource(id: UUID!, input: UpdateResourceInput!): Resource!
+  deleteResource(id: UUID!): Boolean!
+
+  # Folder mutations
+  createFolder(input: CreateFolderInput!): Folder!
+  updateFolder(id: UUID!, name: String!): Folder!
+  deleteFolder(id: UUID!): Boolean!
+
+  # Permission mutations
+  grantPermission(subjectType: String!, subjectId: UUID!, objectType: String!, objectId: UUID!, level: PermissionLevel!): Permission!
+  revokePermission(id: UUID!): Boolean!
+
+  # Database mutations
+  createTable(databaseId: UUID!, name: String!, columns: [JSON!]!): Table!
+  deleteTable(id: UUID!): Boolean!
+  insertRow(tableId: UUID!, data: JSON!): TableRow!
+  updateRow(id: UUID!, data: JSON!): TableRow!
+  deleteRow(id: UUID!): Boolean!
+
+  # Source control mutations
+  createDeployment(branchName: String!, environment: String!): Deployment!
+  rollbackDeployment(deploymentId: UUID!): Deployment!
+
+  # Developer mutations
+  createApiToken(name: String!, description: String, expiresAt: DateTime): ApiToken!
+  deleteApiToken(id: UUID!): Boolean!
+}
+
+schema {
+  query: RootQuery
+  mutation: Mutation
+}
