@@ -2,13 +2,20 @@
   "repo": "retool",
   "feeds": [
     {
+      "source": "https://retool.com/blog",
+      "feed_url": "https://retool.com/blog",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
       "source": "https://docs.retool.com/reference/api/v2",
       "feed_url": "https://docs.retool.com/changelog/rss.xml",
       "title": "",
-      "saved": 5,
+      "saved": 2,
       "method": "discovered"
     }
   ],
-  "fetched": "2026-06-01T23:35:02Z",
-  "post_count": 5
+  "post_count": 7,
+  "fetched": "2026-06-14T20:42:17Z"
 }
