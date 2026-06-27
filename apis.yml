@@ -112,7 +112,7 @@ common:
   url: https://raw.githubusercontent.com/api-evangelist/retool/refs/heads/main/vocabulary/retool-vocabulary.yml
 - type: Integrations
   url: https://retool.com/integrations
-- type: LLMsTxt
+- type: LlmsText
   url: https://docs.retool.com/llms.txt
 integrations:
 - name: AlloyDB
