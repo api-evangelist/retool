@@ -80,6 +80,12 @@ apis:
   - type: Pricing
     url: https://retool.com/pricing
 common:
+- type: TrustCenter
+  url: security/retool-trust-center.yml
+- type: DomainSecurity
+  url: security/retool-domain-security.yml
+- type: Authentication
+  url: authentication/retool-authentication.yml
 - type: Website
   url: https://retool.com/
 - type: Documentation
