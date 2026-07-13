@@ -2,17 +2,17 @@
   "repo": "retool",
   "feeds": [
     {
-      "source": "https://retool.com/blog",
+      "source": "https://retool.com/blog/rss",
       "feed_url": "https://retool.com/blog/rss",
       "title": "",
-      "saved": 1,
-      "method": "discovered"
+      "saved": 0,
+      "method": "feed"
     },
     {
       "source": "https://docs.retool.com/changelog/rss.xml",
       "feed_url": "https://docs.retool.com/changelog/rss.xml",
       "title": "",
-      "saved": 2,
+      "saved": 0,
       "method": "feed"
     },
     {
@@ -23,6 +23,6 @@
       "method": "discovered"
     }
   ],
-  "post_count": 13,
-  "fetched": "2026-06-27T12:03:07Z"
+  "post_count": 96,
+  "fetched": "2026-07-11T11:50:51Z"
 }
