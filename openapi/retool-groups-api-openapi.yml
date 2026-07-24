@@ -1,0 +1,248 @@
+openapi: 3.1.0
+info:
+  title: Retool Management Apps Groups API
+  description: The Retool Management API enables administrators to programmatically manage users, groups, permissions, apps, resources, workflows, folders, spaces, and source control integrations within a Retool organization. Authenticated via Bearer token generated in workspace settings. The API also supports SCIM 2.0 for enterprise identity provider provisioning via Okta and Azure AD.
+  version: 1.0.0
+  contact:
+    name: Retool Support
+    url: https://support.retool.com
+  license:
+    name: Retool Terms of Service
+    url: https://retool.com/terms
+  termsOfService: https://retool.com/terms
+servers:
+- url: https://api.retool.com/v1
+  description: Retool Cloud API
+security:
+- bearerAuth: []
+tags:
+- name: Groups
+  description: Manage groups and group membership. Groups control access to apps, resources, and workflows within the organization.
+paths:
+  /groups:
+    get:
+      operationId: listGroups
+      summary: List Groups
+      description: Retrieves all groups within the Retool organization. Groups are used to manage access permissions for apps, resources, and workflows.
+      tags:
+      - Groups
+      responses:
+        '200':
+          description: Successfully retrieved a list of groups.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      operationId: createGroup
+      summary: Create Group
+      description: Creates a new group within the Retool organization. Groups can be used to control access to apps, resources, and workflows.
+      tags:
+      - Groups
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateGroupRequest'
+      responses:
+        '201':
+          description: Successfully created a new group.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /groups/{groupId}/members:
+    post:
+      operationId: addGroupMember
+      summary: Add Member to Group
+      description: Adds a user to a group, granting them the permissions associated with that group. The user must already exist in the organization.
+      tags:
+      - Groups
+      parameters:
+      - $ref: '#/components/parameters/groupId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddGroupMemberRequest'
+      responses:
+        '200':
+          description: Successfully added the user to the group.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /groups/{groupId}/members/{userId}:
+    delete:
+      operationId: removeGroupMember
+      summary: Remove Member from Group
+      description: Removes a user from a group, revoking the permissions associated with that group. The user remains in the organization but loses access granted by group membership.
+      tags:
+      - Groups
+      parameters:
+      - $ref: '#/components/parameters/groupId'
+      - $ref: '#/components/parameters/userId'
+      responses:
+        '204':
+          description: Successfully removed the user from the group.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  schemas:
+    AddGroupMemberRequest:
+      type: object
+      required:
+      - userId
+      description: Request body for adding a user to a group.
+      properties:
+        userId:
+          type: string
+          format: uuid
+          description: The UUID of the user to add to the group.
+    Error:
+      type: object
+      description: An error response.
+      properties:
+        message:
+          type: string
+          description: A human-readable error message.
+        code:
+          type: string
+          description: A machine-readable error code.
+    CreateGroupRequest:
+      type: object
+      required:
+      - name
+      description: Request body for creating a new group.
+      properties:
+        name:
+          type: string
+          description: The name of the new group.
+    GroupListResponse:
+      type: object
+      description: List of groups.
+      properties:
+        data:
+          type: array
+          description: Array of group objects.
+          items:
+            $ref: '#/components/schemas/Group'
+    UserRef:
+      type: object
+      description: A reference to a user.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The user UUID.
+        email:
+          type: string
+          format: email
+          description: The user's email address.
+    Group:
+      type: object
+      description: A Retool group for managing permissions.
+      properties:
+        id:
+          type: integer
+          description: The numeric identifier for the group.
+        name:
+          type: string
+          description: The name of the group.
+        members:
+          type: array
+          description: Users who are members of this group.
+          items:
+            $ref: '#/components/schemas/UserRef'
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the group was created.
+        updatedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the group was last updated.
+  parameters:
+    userId:
+      name: userId
+      in: path
+      required: true
+      description: The unique UUID identifier of the user.
+      schema:
+        type: string
+        format: uuid
+    groupId:
+      name: groupId
+      in: path
+      required: true
+      description: The numeric identifier of the group.
+      schema:
+        type: integer
+  responses:
+    Unauthorized:
+      description: Authentication failed. The Bearer token is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Access denied. The token does not have the required permissions.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalServerError:
+      description: An internal server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer token generated in Retool workspace settings under API Access Tokens. Format: Authorization: Bearer <token>'

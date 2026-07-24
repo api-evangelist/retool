@@ -1,0 +1,174 @@
+openapi: 3.1.0
+info:
+  title: Retool Management Apps Folders API
+  description: The Retool Management API enables administrators to programmatically manage users, groups, permissions, apps, resources, workflows, folders, spaces, and source control integrations within a Retool organization. Authenticated via Bearer token generated in workspace settings. The API also supports SCIM 2.0 for enterprise identity provider provisioning via Okta and Azure AD.
+  version: 1.0.0
+  contact:
+    name: Retool Support
+    url: https://support.retool.com
+  license:
+    name: Retool Terms of Service
+    url: https://retool.com/terms
+  termsOfService: https://retool.com/terms
+servers:
+- url: https://api.retool.com/v1
+  description: Retool Cloud API
+security:
+- bearerAuth: []
+tags:
+- name: Folders
+  description: Organize apps, resources, and workflows into folders for better team organization.
+paths:
+  /folders:
+    get:
+      operationId: listFolders
+      summary: List Folders
+      description: Retrieves all folders within the Retool organization. Folders are used to organize apps, resources, and workflows.
+      tags:
+      - Folders
+      parameters:
+      - name: folderType
+        in: query
+        required: false
+        description: Filter folders by type (app, resource, workflow).
+        schema:
+          type: string
+          enum:
+          - app
+          - resource
+          - workflow
+      responses:
+        '200':
+          description: Successfully retrieved a list of folders.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FolderListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      operationId: createFolder
+      summary: Create Folder
+      description: Creates a new folder in the Retool organization to organize apps, resources, or workflows.
+      tags:
+      - Folders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFolderRequest'
+      responses:
+        '201':
+          description: Successfully created a new folder.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Folder'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  schemas:
+    Folder:
+      type: object
+      description: A Retool folder for organizing apps, resources, or workflows.
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the folder.
+        name:
+          type: string
+          description: The name of the folder.
+        folderType:
+          type: string
+          description: The type of content this folder organizes.
+          enum:
+          - app
+          - resource
+          - workflow
+        parentFolderId:
+          type: string
+          description: The identifier of the parent folder, if nested.
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the folder was created.
+    Error:
+      type: object
+      description: An error response.
+      properties:
+        message:
+          type: string
+          description: A human-readable error message.
+        code:
+          type: string
+          description: A machine-readable error code.
+    FolderListResponse:
+      type: object
+      description: List of folders.
+      properties:
+        data:
+          type: array
+          description: Array of folder objects.
+          items:
+            $ref: '#/components/schemas/Folder'
+    CreateFolderRequest:
+      type: object
+      required:
+      - name
+      - folderType
+      description: Request body for creating a new folder.
+      properties:
+        name:
+          type: string
+          description: The name of the new folder.
+        folderType:
+          type: string
+          description: The type of content this folder will organize.
+          enum:
+          - app
+          - resource
+          - workflow
+        parentFolderId:
+          type: string
+          description: Place the folder inside another folder.
+  responses:
+    Unauthorized:
+      description: Authentication failed. The Bearer token is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Access denied. The token does not have the required permissions.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalServerError:
+      description: An internal server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer token generated in Retool workspace settings under API Access Tokens. Format: Authorization: Bearer <token>'

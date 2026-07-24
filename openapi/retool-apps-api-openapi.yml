@@ -1,0 +1,292 @@
+openapi: 3.1.0
+info:
+  title: Retool Management Apps API
+  description: The Retool Management API enables administrators to programmatically manage users, groups, permissions, apps, resources, workflows, folders, spaces, and source control integrations within a Retool organization. Authenticated via Bearer token generated in workspace settings. The API also supports SCIM 2.0 for enterprise identity provider provisioning via Okta and Azure AD.
+  version: 1.0.0
+  contact:
+    name: Retool Support
+    url: https://support.retool.com
+  license:
+    name: Retool Terms of Service
+    url: https://retool.com/terms
+  termsOfService: https://retool.com/terms
+servers:
+- url: https://api.retool.com/v1
+  description: Retool Cloud API
+security:
+- bearerAuth: []
+tags:
+- name: Apps
+  description: Create and manage Retool applications. Apps are the core visual building blocks created in the Retool editor.
+paths:
+  /apps:
+    get:
+      operationId: listApps
+      summary: List Apps
+      description: Retrieves a list of all applications within the Retool organization. Returns app metadata including name, description, creator, and folder location.
+      tags:
+      - Apps
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/pageSize'
+      responses:
+        '200':
+          description: Successfully retrieved a list of apps.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      operationId: createApp
+      summary: Create App
+      description: Creates a new application within the Retool organization. The app will be empty and can be edited in the Retool visual editor.
+      tags:
+      - Apps
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAppRequest'
+      responses:
+        '201':
+          description: Successfully created a new app.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/App'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /apps/{appId}:
+    get:
+      operationId: getApp
+      summary: Get App
+      description: Retrieves the details of a specific app by its unique identifier. Returns the app's metadata, configuration, and access information.
+      tags:
+      - Apps
+      parameters:
+      - $ref: '#/components/parameters/appId'
+      responses:
+        '200':
+          description: Successfully retrieved the app.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/App'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    put:
+      operationId: updateApp
+      summary: Update App
+      description: Updates the metadata of a specific app such as its name, description, or folder location.
+      tags:
+      - Apps
+      parameters:
+      - $ref: '#/components/parameters/appId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAppRequest'
+      responses:
+        '200':
+          description: Successfully updated the app.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/App'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    delete:
+      operationId: deleteApp
+      summary: Delete App
+      description: Permanently deletes an app from the Retool organization. This action cannot be undone.
+      tags:
+      - Apps
+      parameters:
+      - $ref: '#/components/parameters/appId'
+      responses:
+        '204':
+          description: Successfully deleted the app.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  schemas:
+    AppListResponse:
+      type: object
+      description: Paginated list of apps.
+      properties:
+        data:
+          type: array
+          description: Array of app objects.
+          items:
+            $ref: '#/components/schemas/App'
+        total:
+          type: integer
+          description: Total number of apps in the organization.
+    UpdateAppRequest:
+      type: object
+      description: Request body for updating an app's metadata.
+      properties:
+        name:
+          type: string
+          description: Updated name for the application.
+        description:
+          type: string
+          description: Updated description for the application.
+        folderId:
+          type: string
+          description: Move the app to a different folder.
+    Error:
+      type: object
+      description: An error response.
+      properties:
+        message:
+          type: string
+          description: A human-readable error message.
+        code:
+          type: string
+          description: A machine-readable error code.
+    App:
+      type: object
+      description: A Retool application.
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the app.
+        name:
+          type: string
+          description: The name of the application.
+        description:
+          type: string
+          description: A description of the application's purpose.
+        folderId:
+          type: string
+          description: The identifier of the folder containing this app.
+        createdBy:
+          type: string
+          description: The email of the user who created the app.
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the app was created.
+        updatedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the app was last updated.
+        resources:
+          type: array
+          description: Resource identifiers used by this app.
+          items:
+            type: string
+    CreateAppRequest:
+      type: object
+      required:
+      - name
+      description: Request body for creating a new app.
+      properties:
+        name:
+          type: string
+          description: The name of the new application.
+        description:
+          type: string
+          description: A description of the application's purpose.
+        folderId:
+          type: string
+          description: The folder to place the app in.
+  parameters:
+    appId:
+      name: appId
+      in: path
+      required: true
+      description: The unique identifier of the app.
+      schema:
+        type: string
+    page:
+      name: page
+      in: query
+      required: false
+      description: Page number for pagination (1-based).
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    pageSize:
+      name: pageSize
+      in: query
+      required: false
+      description: Number of records per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 100
+  responses:
+    Unauthorized:
+      description: Authentication failed. The Bearer token is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Access denied. The token does not have the required permissions.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalServerError:
+      description: An internal server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer token generated in Retool workspace settings under API Access Tokens. Format: Authorization: Bearer <token>'

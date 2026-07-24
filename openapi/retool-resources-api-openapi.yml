@@ -1,0 +1,110 @@
+openapi: 3.1.0
+info:
+  title: Retool Management Apps Resources API
+  description: The Retool Management API enables administrators to programmatically manage users, groups, permissions, apps, resources, workflows, folders, spaces, and source control integrations within a Retool organization. Authenticated via Bearer token generated in workspace settings. The API also supports SCIM 2.0 for enterprise identity provider provisioning via Okta and Azure AD.
+  version: 1.0.0
+  contact:
+    name: Retool Support
+    url: https://support.retool.com
+  license:
+    name: Retool Terms of Service
+    url: https://retool.com/terms
+  termsOfService: https://retool.com/terms
+servers:
+- url: https://api.retool.com/v1
+  description: Retool Cloud API
+security:
+- bearerAuth: []
+tags:
+- name: Resources
+  description: Manage data source connections (databases, APIs, services) that power Retool queries.
+paths:
+  /resources:
+    get:
+      operationId: listResources
+      summary: List Resources
+      description: Retrieves all data source resource connections configured in the Retool organization, including databases, REST APIs, and third-party service integrations.
+      tags:
+      - Resources
+      responses:
+        '200':
+          description: Successfully retrieved a list of resources.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  schemas:
+    Resource:
+      type: object
+      description: A Retool data source resource connection.
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the resource.
+        name:
+          type: string
+          description: The name of the resource.
+        type:
+          type: string
+          description: The type of resource (e.g., postgresql, mysql, restapi, mongodb, snowflake, googlesheets, etc.).
+        displayName:
+          type: string
+          description: The human-readable display name of the resource type.
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the resource was created.
+        updatedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the resource was last updated.
+    Error:
+      type: object
+      description: An error response.
+      properties:
+        message:
+          type: string
+          description: A human-readable error message.
+        code:
+          type: string
+          description: A machine-readable error code.
+    ResourceListResponse:
+      type: object
+      description: List of data source resources.
+      properties:
+        data:
+          type: array
+          description: Array of resource objects.
+          items:
+            $ref: '#/components/schemas/Resource'
+  responses:
+    Unauthorized:
+      description: Authentication failed. The Bearer token is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Access denied. The token does not have the required permissions.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalServerError:
+      description: An internal server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer token generated in Retool workspace settings under API Access Tokens. Format: Authorization: Bearer <token>'
