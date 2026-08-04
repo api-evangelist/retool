@@ -1,0 +1,22 @@
+{
+  "provider": "retool",
+  "sources": [
+    "retool-apps-api-openapi.yml",
+    "retool-folders-api-openapi.yml",
+    "retool-groups-api-openapi.yml",
+    "retool-resources-api-openapi.yml",
+    "retool-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "retool-apps-api-openapi.yml",
+    "retool-folders-api-openapi.yml",
+    "retool-groups-api-openapi.yml",
+    "retool-resources-api-openapi.yml",
+    "retool-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

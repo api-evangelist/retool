@@ -1,0 +1,238 @@
+{
+  "info": {
+    "_postman_id": "538a0ee9-8b0d-45e8-949d-17d4ad877fd9",
+    "name": "Retool Management Apps Resources API",
+    "description": "The Retool Management API enables administrators to programmatically manage users, groups, permissions, apps, resources, workflows, folders, spaces, and source control integrations within a Retool organization. Authenticated via Bearer token generated in workspace settings. The API also supports SCIM 2.0 for enterprise identity provider provisioning via Okta and Azure AD.\n\nContact Support:\n Name: Retool Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:47:35.000Z",
+    "updatedAt": "2026-07-28T02:47:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-538a0ee9-8b0d-45e8-949d-17d4ad877fd9"
+  },
+  "item": [
+    {
+      "name": "resources",
+      "item": [
+        {
+          "name": "List Resources",
+          "id": "71d319e0-58ec-4f94-9a38-02d75de204e4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/resources",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "resources"
+              ]
+            },
+            "description": "Retrieves all data source resource connections configured in the Retool organization, including databases, REST APIs, and third-party service integrations."
+          },
+          "response": [
+            {
+              "id": "26cce89c-029f-495b-87e1-b8dbbea91a0a",
+              "name": "Successfully retrieved a list of resources.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/resources",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "resources"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:47:35.000Z",
+              "updatedAt": "2026-07-28T02:47:35.000Z",
+              "uid": "35240-26cce89c-029f-495b-87e1-b8dbbea91a0a"
+            },
+            {
+              "id": "122cb301-309d-495d-aca7-ede9e790bac4",
+              "name": "Authentication failed. The Bearer token is missing or invalid.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/resources",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "resources"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:47:35.000Z",
+              "updatedAt": "2026-07-28T02:47:35.000Z",
+              "uid": "35240-122cb301-309d-495d-aca7-ede9e790bac4"
+            },
+            {
+              "id": "95f0d83c-2ddb-41e1-86c7-cb80d4ba6bc9",
+              "name": "Access denied. The token does not have the required permissions.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/resources",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "resources"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:47:35.000Z",
+              "updatedAt": "2026-07-28T02:47:35.000Z",
+              "uid": "35240-95f0d83c-2ddb-41e1-86c7-cb80d4ba6bc9"
+            },
+            {
+              "id": "214af36f-010c-4029-809f-2aa0c994f6d8",
+              "name": "An internal server error occurred.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/resources",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "resources"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:47:35.000Z",
+              "updatedAt": "2026-07-28T02:47:35.000Z",
+              "uid": "35240-214af36f-010c-4029-809f-2aa0c994f6d8"
+            }
+          ],
+          "createdAt": "2026-07-28T02:47:35.000Z",
+          "updatedAt": "2026-07-28T02:47:35.000Z",
+          "uid": "35240-71d319e0-58ec-4f94-9a38-02d75de204e4"
+        }
+      ],
+      "id": "33725c0c-1191-4530-90c6-90c50495f5df",
+      "createdAt": "2026-07-28T02:47:35.000Z",
+      "updatedAt": "2026-07-28T02:47:35.000Z",
+      "uid": "35240-33725c0c-1191-4530-90c6-90c50495f5df"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.retool.com/v1"
+    }
+  ]
+}

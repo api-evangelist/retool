@@ -1,0 +1,1609 @@
+{
+  "info": {
+    "_postman_id": "c152fe06-7ae2-4888-8bcb-ac5c14c1baa3",
+    "name": "Retool Management Apps API",
+    "description": "The Retool Management API enables administrators to programmatically manage users, groups, permissions, apps, resources, workflows, folders, spaces, and source control integrations within a Retool organization. Authenticated via Bearer token generated in workspace settings. The API also supports SCIM 2.0 for enterprise identity provider provisioning via Okta and Azure AD.\n\nContact Support:\n Name: Retool Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:47:30.000Z",
+    "updatedAt": "2026-07-28T02:47:30.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c152fe06-7ae2-4888-8bcb-ac5c14c1baa3"
+  },
+  "item": [
+    {
+      "name": "apps",
+      "item": [
+        {
+          "name": "{appId}",
+          "item": [
+            {
+              "name": "Get App",
+              "id": "e07416a0-a306-4104-99a7-58c93f7dad06",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/apps/:appId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "apps",
+                    ":appId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "3ae635b9-5329-41f1-a324-9aa9eae01dbe",
+                      "key": "appId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the app."
+                    }
+                  ]
+                },
+                "description": "Retrieves the details of a specific app by its unique identifier. Returns the app's metadata, configuration, and access information."
+              },
+              "response": [
+                {
+                  "id": "058960bd-eba0-43d1-91b9-00489045787d",
+                  "name": "Successfully retrieved the app.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "appId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"folderId\": \"<string>\",\n  \"createdBy\": \"<string>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"resources\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-07-28T02:47:30.000Z",
+                  "updatedAt": "2026-07-28T02:47:30.000Z",
+                  "uid": "35240-058960bd-eba0-43d1-91b9-00489045787d"
+                },
+                {
+                  "id": "bce90b9a-2b85-41d0-800c-44adc6574fec",
+                  "name": "Authentication failed. The Bearer token is missing or invalid.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "appId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:47:30.000Z",
+                  "updatedAt": "2026-07-28T02:47:30.000Z",
+                  "uid": "35240-bce90b9a-2b85-41d0-800c-44adc6574fec"
+                },
+                {
+                  "id": "daac73f5-fd7b-4bdb-a426-80b7c38076b2",
+                  "name": "Access denied. The token does not have the required permissions.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "appId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:47:30.000Z",
+                  "updatedAt": "2026-07-28T02:47:30.000Z",
+                  "uid": "35240-daac73f5-fd7b-4bdb-a426-80b7c38076b2"
+                },
+                {
+                  "id": "84c44a9f-edd4-4de6-a110-0cbdbca32513",
+                  "name": "The requested resource was not found.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "appId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:47:30.000Z",
+                  "updatedAt": "2026-07-28T02:47:30.000Z",
+                  "uid": "35240-84c44a9f-edd4-4de6-a110-0cbdbca32513"
+                },
+                {
+                  "id": "d14ce6b9-dc8a-46fd-bb18-90b9045dd808",
+                  "name": "An internal server error occurred.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "appId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:47:30.000Z",
+                  "updatedAt": "2026-07-28T02:47:30.000Z",
+                  "uid": "35240-d14ce6b9-dc8a-46fd-bb18-90b9045dd808"
+                }
+              ],
+              "createdAt": "2026-07-28T02:47:30.000Z",
+              "updatedAt": "2026-07-28T02:47:30.000Z",
+              "uid": "35240-e07416a0-a306-4104-99a7-58c93f7dad06"
+            },
+            {
+              "name": "Update App",
+              "id": "1d1e31a3-d1e2-453a-ab72-8a1743f76158",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"folderId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/apps/:appId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "apps",
+                    ":appId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "0c91dfb8-653d-4b40-a76d-d80930ef640e",
+                      "key": "appId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the app."
+                    }
+                  ]
+                },
+                "description": "Updates the metadata of a specific app such as its name, description, or folder location."
+              },
+              "response": [
+                {
+                  "id": "355a58a9-35ac-4819-b34f-9489760a1512",
+                  "name": "Successfully updated the app.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"folderId\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "appId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"folderId\": \"<string>\",\n  \"createdBy\": \"<string>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"resources\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-07-28T02:47:30.000Z",
+                  "updatedAt": "2026-07-28T02:47:30.000Z",
+                  "uid": "35240-355a58a9-35ac-4819-b34f-9489760a1512"
+                },
+                {
+                  "id": "30947738-362c-48e2-b04f-b06f20dd0e5d",
+                  "name": "The request was malformed or contained invalid parameters.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"folderId\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "appId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:47:30.000Z",
+                  "updatedAt": "2026-07-28T02:47:30.000Z",
+                  "uid": "35240-30947738-362c-48e2-b04f-b06f20dd0e5d"
+                },
+                {
+                  "id": "fc161f06-771e-4bc2-a35f-dfbf92e73ff4",
+                  "name": "Authentication failed. The Bearer token is missing or invalid.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"folderId\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "appId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:47:30.000Z",
+                  "updatedAt": "2026-07-28T02:47:30.000Z",
+                  "uid": "35240-fc161f06-771e-4bc2-a35f-dfbf92e73ff4"
+                },
+                {
+                  "id": "43dcf4eb-4c80-43d9-88b0-d0fa37ce406c",
+                  "name": "Access denied. The token does not have the required permissions.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"folderId\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "appId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:47:30.000Z",
+                  "updatedAt": "2026-07-28T02:47:30.000Z",
+                  "uid": "35240-43dcf4eb-4c80-43d9-88b0-d0fa37ce406c"
+                },
+                {
+                  "id": "b4ccd497-7d94-4a89-bc1f-af50e982b143",
+                  "name": "The requested resource was not found.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"folderId\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "appId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:47:30.000Z",
+                  "updatedAt": "2026-07-28T02:47:30.000Z",
+                  "uid": "35240-b4ccd497-7d94-4a89-bc1f-af50e982b143"
+                },
+                {
+                  "id": "e13fd462-b4c0-4bbf-82d9-442c8a69c26e",
+                  "name": "An internal server error occurred.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"folderId\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "appId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:47:30.000Z",
+                  "updatedAt": "2026-07-28T02:47:30.000Z",
+                  "uid": "35240-e13fd462-b4c0-4bbf-82d9-442c8a69c26e"
+                }
+              ],
+              "createdAt": "2026-07-28T02:47:30.000Z",
+              "updatedAt": "2026-07-28T02:47:30.000Z",
+              "uid": "35240-1d1e31a3-d1e2-453a-ab72-8a1743f76158"
+            },
+            {
+              "name": "Delete App",
+              "id": "76626328-5860-4e40-a4a3-0a6dbd0c60aa",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/apps/:appId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "apps",
+                    ":appId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "0394c123-ce52-49f0-b78d-275e53f269e7",
+                      "key": "appId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the app."
+                    }
+                  ]
+                },
+                "description": "Permanently deletes an app from the Retool organization. This action cannot be undone."
+              },
+              "response": [
+                {
+                  "id": "94485ba3-5b95-4fb9-83de-ba11522c33de",
+                  "name": "Successfully deleted the app.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "appId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:47:30.000Z",
+                  "updatedAt": "2026-07-28T02:47:30.000Z",
+                  "uid": "35240-94485ba3-5b95-4fb9-83de-ba11522c33de"
+                },
+                {
+                  "id": "9911a1b5-5034-49a4-ad77-ca4ed30430e7",
+                  "name": "Authentication failed. The Bearer token is missing or invalid.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "appId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:47:30.000Z",
+                  "updatedAt": "2026-07-28T02:47:30.000Z",
+                  "uid": "35240-9911a1b5-5034-49a4-ad77-ca4ed30430e7"
+                },
+                {
+                  "id": "d724999e-1af9-4831-bdc0-be085878d3cb",
+                  "name": "Access denied. The token does not have the required permissions.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "appId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:47:30.000Z",
+                  "updatedAt": "2026-07-28T02:47:30.000Z",
+                  "uid": "35240-d724999e-1af9-4831-bdc0-be085878d3cb"
+                },
+                {
+                  "id": "6d1582d0-cca2-4735-851b-52f4b579f45b",
+                  "name": "The requested resource was not found.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "appId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:47:30.000Z",
+                  "updatedAt": "2026-07-28T02:47:30.000Z",
+                  "uid": "35240-6d1582d0-cca2-4735-851b-52f4b579f45b"
+                },
+                {
+                  "id": "42fe9e21-1c93-4649-bdf8-04d47cbca504",
+                  "name": "An internal server error occurred.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "appId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:47:30.000Z",
+                  "updatedAt": "2026-07-28T02:47:30.000Z",
+                  "uid": "35240-42fe9e21-1c93-4649-bdf8-04d47cbca504"
+                }
+              ],
+              "createdAt": "2026-07-28T02:47:30.000Z",
+              "updatedAt": "2026-07-28T02:47:30.000Z",
+              "uid": "35240-76626328-5860-4e40-a4a3-0a6dbd0c60aa"
+            }
+          ],
+          "id": "be6231be-9b02-41ad-88b5-67ea6300687a",
+          "createdAt": "2026-07-28T02:47:30.000Z",
+          "updatedAt": "2026-07-28T02:47:30.000Z",
+          "uid": "35240-be6231be-9b02-41ad-88b5-67ea6300687a"
+        },
+        {
+          "name": "List Apps",
+          "id": "a9730d17-359d-4229-a914-5746ee62200d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/apps?page=1&pageSize=100",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "apps"
+              ],
+              "query": [
+                {
+                  "description": "Page number for pagination (1-based).",
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "description": "Number of records per page.",
+                  "key": "pageSize",
+                  "value": "100"
+                }
+              ]
+            },
+            "description": "Retrieves a list of all applications within the Retool organization. Returns app metadata including name, description, creator, and folder location."
+          },
+          "response": [
+            {
+              "id": "37075e26-6506-4bfd-bf09-c8133a810ba4",
+              "name": "Successfully retrieved a list of apps.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/apps?page=1&pageSize=100",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "apps"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number for pagination (1-based).",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of records per page.",
+                      "key": "pageSize",
+                      "value": "100"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"folderId\": \"<string>\",\n      \"createdBy\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"resources\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"folderId\": \"<string>\",\n      \"createdBy\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"resources\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"total\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T02:47:30.000Z",
+              "updatedAt": "2026-07-28T02:47:30.000Z",
+              "uid": "35240-37075e26-6506-4bfd-bf09-c8133a810ba4"
+            },
+            {
+              "id": "462b1010-f7c1-4f69-9b06-2976d5202369",
+              "name": "Authentication failed. The Bearer token is missing or invalid.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/apps?page=1&pageSize=100",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "apps"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number for pagination (1-based).",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of records per page.",
+                      "key": "pageSize",
+                      "value": "100"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:47:30.000Z",
+              "updatedAt": "2026-07-28T02:47:30.000Z",
+              "uid": "35240-462b1010-f7c1-4f69-9b06-2976d5202369"
+            },
+            {
+              "id": "0e159e3b-5373-477a-b7a0-7327de137ffd",
+              "name": "Access denied. The token does not have the required permissions.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/apps?page=1&pageSize=100",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "apps"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number for pagination (1-based).",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of records per page.",
+                      "key": "pageSize",
+                      "value": "100"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:47:30.000Z",
+              "updatedAt": "2026-07-28T02:47:30.000Z",
+              "uid": "35240-0e159e3b-5373-477a-b7a0-7327de137ffd"
+            },
+            {
+              "id": "877d4f8e-54b8-4c85-bd95-90bc024faf81",
+              "name": "An internal server error occurred.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/apps?page=1&pageSize=100",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "apps"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number for pagination (1-based).",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of records per page.",
+                      "key": "pageSize",
+                      "value": "100"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:47:30.000Z",
+              "updatedAt": "2026-07-28T02:47:30.000Z",
+              "uid": "35240-877d4f8e-54b8-4c85-bd95-90bc024faf81"
+            }
+          ],
+          "createdAt": "2026-07-28T02:47:30.000Z",
+          "updatedAt": "2026-07-28T02:47:30.000Z",
+          "uid": "35240-a9730d17-359d-4229-a914-5746ee62200d"
+        },
+        {
+          "name": "Create App",
+          "id": "1d3426e9-cb8d-44b5-8de0-c5d9d688fcc8",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"folderId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/apps",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "apps"
+              ]
+            },
+            "description": "Creates a new application within the Retool organization. The app will be empty and can be edited in the Retool visual editor."
+          },
+          "response": [
+            {
+              "id": "120653ff-c794-47e3-aa96-800ec446f410",
+              "name": "Successfully created a new app.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"folderId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/apps",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "apps"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"folderId\": \"<string>\",\n  \"createdBy\": \"<string>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"resources\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "createdAt": "2026-07-28T02:47:30.000Z",
+              "updatedAt": "2026-07-28T02:47:30.000Z",
+              "uid": "35240-120653ff-c794-47e3-aa96-800ec446f410"
+            },
+            {
+              "id": "312c0e82-34ce-413f-9b51-76d1aced8227",
+              "name": "The request was malformed or contained invalid parameters.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"folderId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/apps",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "apps"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:47:30.000Z",
+              "updatedAt": "2026-07-28T02:47:30.000Z",
+              "uid": "35240-312c0e82-34ce-413f-9b51-76d1aced8227"
+            },
+            {
+              "id": "16086576-e762-45f8-8978-4779c2ec7b0e",
+              "name": "Authentication failed. The Bearer token is missing or invalid.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"folderId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/apps",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "apps"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:47:30.000Z",
+              "updatedAt": "2026-07-28T02:47:30.000Z",
+              "uid": "35240-16086576-e762-45f8-8978-4779c2ec7b0e"
+            },
+            {
+              "id": "f4bd9542-4107-404c-ab0c-3ce25fdac74d",
+              "name": "Access denied. The token does not have the required permissions.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"folderId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/apps",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "apps"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:47:30.000Z",
+              "updatedAt": "2026-07-28T02:47:30.000Z",
+              "uid": "35240-f4bd9542-4107-404c-ab0c-3ce25fdac74d"
+            },
+            {
+              "id": "e7db923f-675e-4319-8b2e-f9dfb2efe451",
+              "name": "An internal server error occurred.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"folderId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/apps",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "apps"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:47:30.000Z",
+              "updatedAt": "2026-07-28T02:47:30.000Z",
+              "uid": "35240-e7db923f-675e-4319-8b2e-f9dfb2efe451"
+            }
+          ],
+          "createdAt": "2026-07-28T02:47:30.000Z",
+          "updatedAt": "2026-07-28T02:47:30.000Z",
+          "uid": "35240-1d3426e9-cb8d-44b5-8de0-c5d9d688fcc8"
+        }
+      ],
+      "id": "53d41501-b79d-42ff-b4a7-fc0040fe7c11",
+      "createdAt": "2026-07-28T02:47:30.000Z",
+      "updatedAt": "2026-07-28T02:47:30.000Z",
+      "uid": "35240-53d41501-b79d-42ff-b4a7-fc0040fe7c11"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.retool.com/v1"
+    }
+  ]
+}

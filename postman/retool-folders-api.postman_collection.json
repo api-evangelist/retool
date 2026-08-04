@@ -1,0 +1,598 @@
+{
+  "info": {
+    "_postman_id": "f77ec9f3-d693-4f8e-81d2-5d469aa62ebb",
+    "name": "Retool Management Apps Folders API",
+    "description": "The Retool Management API enables administrators to programmatically manage users, groups, permissions, apps, resources, workflows, folders, spaces, and source control integrations within a Retool organization. Authenticated via Bearer token generated in workspace settings. The API also supports SCIM 2.0 for enterprise identity provider provisioning via Okta and Azure AD.\n\nContact Support:\n Name: Retool Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:47:33.000Z",
+    "updatedAt": "2026-07-28T02:47:33.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f77ec9f3-d693-4f8e-81d2-5d469aa62ebb"
+  },
+  "item": [
+    {
+      "name": "folders",
+      "item": [
+        {
+          "name": "List Folders",
+          "id": "d91f4be9-20ee-43d4-845b-07a0f4a420ca",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/folders?folderType=resource",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "folders"
+              ],
+              "query": [
+                {
+                  "description": "Filter folders by type (app, resource, workflow).",
+                  "key": "folderType",
+                  "value": "resource"
+                }
+              ]
+            },
+            "description": "Retrieves all folders within the Retool organization. Folders are used to organize apps, resources, and workflows."
+          },
+          "response": [
+            {
+              "id": "51d88c31-530e-42b9-b159-b0a3a7092df1",
+              "name": "Successfully retrieved a list of folders.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/folders?folderType=resource",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "folders"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter folders by type (app, resource, workflow).",
+                      "key": "folderType",
+                      "value": "resource"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"folderType\": \"workflow\",\n      \"parentFolderId\": \"<string>\",\n      \"createdAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"folderType\": \"resource\",\n      \"parentFolderId\": \"<string>\",\n      \"createdAt\": \"<dateTime>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:47:33.000Z",
+              "updatedAt": "2026-07-28T02:47:33.000Z",
+              "uid": "35240-51d88c31-530e-42b9-b159-b0a3a7092df1"
+            },
+            {
+              "id": "1f8c4241-a050-4454-8a3c-6ae02c87cf02",
+              "name": "Authentication failed. The Bearer token is missing or invalid.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/folders?folderType=resource",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "folders"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter folders by type (app, resource, workflow).",
+                      "key": "folderType",
+                      "value": "resource"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:47:33.000Z",
+              "updatedAt": "2026-07-28T02:47:33.000Z",
+              "uid": "35240-1f8c4241-a050-4454-8a3c-6ae02c87cf02"
+            },
+            {
+              "id": "5085a46e-39fa-4701-a22e-61d935d6ad4b",
+              "name": "Access denied. The token does not have the required permissions.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/folders?folderType=resource",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "folders"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter folders by type (app, resource, workflow).",
+                      "key": "folderType",
+                      "value": "resource"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:47:33.000Z",
+              "updatedAt": "2026-07-28T02:47:33.000Z",
+              "uid": "35240-5085a46e-39fa-4701-a22e-61d935d6ad4b"
+            },
+            {
+              "id": "d0c146a0-1ac6-47c0-9950-35c890452453",
+              "name": "An internal server error occurred.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/folders?folderType=resource",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "folders"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter folders by type (app, resource, workflow).",
+                      "key": "folderType",
+                      "value": "resource"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:47:33.000Z",
+              "updatedAt": "2026-07-28T02:47:33.000Z",
+              "uid": "35240-d0c146a0-1ac6-47c0-9950-35c890452453"
+            }
+          ],
+          "createdAt": "2026-07-28T02:47:33.000Z",
+          "updatedAt": "2026-07-28T02:47:33.000Z",
+          "uid": "35240-d91f4be9-20ee-43d4-845b-07a0f4a420ca"
+        },
+        {
+          "name": "Create Folder",
+          "id": "78f21406-9dff-409c-a89c-33b76c44cd5a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"folderType\": \"resource\",\n  \"parentFolderId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/folders",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "folders"
+              ]
+            },
+            "description": "Creates a new folder in the Retool organization to organize apps, resources, or workflows."
+          },
+          "response": [
+            {
+              "id": "fa9f62dc-3f72-4936-809c-3426696d904f",
+              "name": "Successfully created a new folder.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"folderType\": \"resource\",\n  \"parentFolderId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/folders",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "folders"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"folderType\": \"resource\",\n  \"parentFolderId\": \"<string>\",\n  \"createdAt\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T02:47:33.000Z",
+              "updatedAt": "2026-07-28T02:47:33.000Z",
+              "uid": "35240-fa9f62dc-3f72-4936-809c-3426696d904f"
+            },
+            {
+              "id": "cf2a18e6-525e-47d4-8ee3-8fc68a567f30",
+              "name": "The request was malformed or contained invalid parameters.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"folderType\": \"resource\",\n  \"parentFolderId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/folders",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "folders"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:47:33.000Z",
+              "updatedAt": "2026-07-28T02:47:33.000Z",
+              "uid": "35240-cf2a18e6-525e-47d4-8ee3-8fc68a567f30"
+            },
+            {
+              "id": "6b74a21c-d7ed-49f5-8e80-c0d627e96779",
+              "name": "Authentication failed. The Bearer token is missing or invalid.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"folderType\": \"resource\",\n  \"parentFolderId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/folders",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "folders"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:47:33.000Z",
+              "updatedAt": "2026-07-28T02:47:33.000Z",
+              "uid": "35240-6b74a21c-d7ed-49f5-8e80-c0d627e96779"
+            },
+            {
+              "id": "ab13001c-05f0-4644-810f-0fbb73928fb8",
+              "name": "Access denied. The token does not have the required permissions.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"folderType\": \"resource\",\n  \"parentFolderId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/folders",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "folders"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:47:33.000Z",
+              "updatedAt": "2026-07-28T02:47:33.000Z",
+              "uid": "35240-ab13001c-05f0-4644-810f-0fbb73928fb8"
+            },
+            {
+              "id": "d2dd29df-0424-4565-ad33-ab49fe0359f1",
+              "name": "An internal server error occurred.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"folderType\": \"resource\",\n  \"parentFolderId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/folders",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "folders"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:47:33.000Z",
+              "updatedAt": "2026-07-28T02:47:33.000Z",
+              "uid": "35240-d2dd29df-0424-4565-ad33-ab49fe0359f1"
+            }
+          ],
+          "createdAt": "2026-07-28T02:47:33.000Z",
+          "updatedAt": "2026-07-28T02:47:33.000Z",
+          "uid": "35240-78f21406-9dff-409c-a89c-33b76c44cd5a"
+        }
+      ],
+      "id": "33686118-eaad-4f80-87f0-72b76321521c",
+      "createdAt": "2026-07-28T02:47:33.000Z",
+      "updatedAt": "2026-07-28T02:47:33.000Z",
+      "uid": "35240-33686118-eaad-4f80-87f0-72b76321521c"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.retool.com/v1"
+    }
+  ]
+}
