@@ -25,6 +25,12 @@ tags:
 - Admin Panel
 - Dashboard
 - Internal Tools
+- Low-Code
+- No-Code
+tags_raw:
+- Admin Panel
+- Dashboard
+- Internal Tools
 - Low Code
 - No Code
 url: https://raw.githubusercontent.com/api-evangelist/retool/refs/heads/main/apis.yml
@@ -57,6 +63,13 @@ apis:
     and SOC 2 compliance.
   humanURL: https://retool.com/
   tags:
+  - Artificial Intelligence
+  - Dashboard
+  - Internal Tools
+  - Low-Code
+  - Mobile
+  - Workflows
+  tags_raw:
   - AI
   - Dashboard
   - Internal Tools
@@ -77,6 +90,8 @@ apis:
     editor.
   humanURL: https://docs.retool.com/reference/api/v2
   tags:
+  - Application
+  tags_raw:
   - Apps
   properties:
   - type: OpenAPI
@@ -109,6 +124,8 @@ apis:
     the organization.
   humanURL: https://docs.retool.com/reference/api/v2
   tags:
+  - Group
+  tags_raw:
   - Groups
   properties:
   - type: OpenAPI
@@ -141,6 +158,8 @@ apis:
     end-user) and activation status.
   humanURL: https://docs.retool.com/reference/api/v2
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
