@@ -36,7 +36,7 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/retool.png
 tags:
 - Admin Panel
-- Dashboard
+- Dashboards
 - Internal Tools
 - Low-Code
 - No-Code
@@ -77,7 +77,7 @@ apis:
   humanURL: https://retool.com/
   tags:
   - Artificial Intelligence
-  - Dashboard
+  - Dashboards
   - Internal Tools
   - Low-Code
   - Mobile
