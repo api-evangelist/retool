@@ -1,11 +1,7 @@
 {
   "provider": "retool",
   "sources": [
-    "retool-apps-api-openapi.yml",
-    "retool-folders-api-openapi.yml",
-    "retool-groups-api-openapi.yml",
-    "retool-resources-api-openapi.yml",
-    "retool-users-api-openapi.yml"
+    "_original/retool-management-api-openapi.yml"
   ],
   "outputs": [
     "retool-apps-api-openapi.yml",
@@ -17,6 +13,16 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "retool-management-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "retool-apps-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "retool-folders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "retool-groups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "retool-resources-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "retool-users-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

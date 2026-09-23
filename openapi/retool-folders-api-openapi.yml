@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Retool Management Apps Folders API
+  title: Retool Management Folders API
   description: The Retool Management API enables administrators to programmatically manage users, groups, permissions, apps, resources, workflows, folders, spaces, and source control integrations within a Retool organization. Authenticated via Bearer token generated in workspace settings. The API also supports SCIM 2.0 for enterprise identity provider provisioning via Okta and Azure AD.
   version: 1.0.0
   contact:
@@ -78,7 +78,61 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
+  responses:
+    Unauthorized:
+      description: Authentication failed. The Bearer token is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Access denied. The token does not have the required permissions.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalServerError:
+      description: An internal server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    FolderListResponse:
+      type: object
+      description: List of folders.
+      properties:
+        data:
+          type: array
+          description: Array of folder objects.
+          items:
+            $ref: '#/components/schemas/Folder'
+    CreateFolderRequest:
+      type: object
+      required:
+      - name
+      - folderType
+      description: Request body for creating a new folder.
+      properties:
+        name:
+          type: string
+          description: The name of the new folder.
+        folderType:
+          type: string
+          description: The type of content this folder will organize.
+          enum:
+          - app
+          - resource
+          - workflow
+        parentFolderId:
+          type: string
+          description: Place the folder inside another folder.
     Folder:
       type: object
       description: A Retool folder for organizing apps, resources, or workflows.
@@ -113,60 +167,6 @@ components:
         code:
           type: string
           description: A machine-readable error code.
-    FolderListResponse:
-      type: object
-      description: List of folders.
-      properties:
-        data:
-          type: array
-          description: Array of folder objects.
-          items:
-            $ref: '#/components/schemas/Folder'
-    CreateFolderRequest:
-      type: object
-      required:
-      - name
-      - folderType
-      description: Request body for creating a new folder.
-      properties:
-        name:
-          type: string
-          description: The name of the new folder.
-        folderType:
-          type: string
-          description: The type of content this folder will organize.
-          enum:
-          - app
-          - resource
-          - workflow
-        parentFolderId:
-          type: string
-          description: Place the folder inside another folder.
-  responses:
-    Unauthorized:
-      description: Authentication failed. The Bearer token is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed or contained invalid parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: Access denied. The token does not have the required permissions.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    InternalServerError:
-      description: An internal server error occurred.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

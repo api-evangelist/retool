@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Retool Management Apps API
   description: The Retool Management API enables administrators to programmatically manage users, groups, permissions, apps, resources, workflows, folders, spaces, and source control integrations within a Retool organization. Authenticated via Bearer token generated in workspace settings. The API also supports SCIM 2.0 for enterprise identity provider provisioning via Okta and Azure AD.
@@ -144,19 +144,65 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
+  responses:
+    Unauthorized:
+      description: Authentication failed. The Bearer token is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Access denied. The token does not have the required permissions.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalServerError:
+      description: An internal server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    pageSize:
+      name: pageSize
+      in: query
+      required: false
+      description: Number of records per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 100
+    appId:
+      name: appId
+      in: path
+      required: true
+      description: The unique identifier of the app.
+      schema:
+        type: string
+    page:
+      name: page
+      in: query
+      required: false
+      description: Page number for pagination (1-based).
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
   schemas:
-    AppListResponse:
-      type: object
-      description: Paginated list of apps.
-      properties:
-        data:
-          type: array
-          description: Array of app objects.
-          items:
-            $ref: '#/components/schemas/App'
-        total:
-          type: integer
-          description: Total number of apps in the organization.
     UpdateAppRequest:
       type: object
       description: Request body for updating an app's metadata.
@@ -170,16 +216,33 @@ components:
         folderId:
           type: string
           description: Move the app to a different folder.
-    Error:
+    AppListResponse:
       type: object
-      description: An error response.
+      description: Paginated list of apps.
       properties:
-        message:
+        data:
+          type: array
+          description: Array of app objects.
+          items:
+            $ref: '#/components/schemas/App'
+        total:
+          type: integer
+          description: Total number of apps in the organization.
+    CreateAppRequest:
+      type: object
+      required:
+      - name
+      description: Request body for creating a new app.
+      properties:
+        name:
           type: string
-          description: A human-readable error message.
-        code:
+          description: The name of the new application.
+        description:
           type: string
-          description: A machine-readable error code.
+          description: A description of the application's purpose.
+        folderId:
+          type: string
+          description: The folder to place the app in.
     App:
       type: object
       description: A Retool application.
@@ -212,79 +275,16 @@ components:
           description: Resource identifiers used by this app.
           items:
             type: string
-    CreateAppRequest:
+    Error:
       type: object
-      required:
-      - name
-      description: Request body for creating a new app.
+      description: An error response.
       properties:
-        name:
+        message:
           type: string
-          description: The name of the new application.
-        description:
+          description: A human-readable error message.
+        code:
           type: string
-          description: A description of the application's purpose.
-        folderId:
-          type: string
-          description: The folder to place the app in.
-  parameters:
-    appId:
-      name: appId
-      in: path
-      required: true
-      description: The unique identifier of the app.
-      schema:
-        type: string
-    page:
-      name: page
-      in: query
-      required: false
-      description: Page number for pagination (1-based).
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    pageSize:
-      name: pageSize
-      in: query
-      required: false
-      description: Number of records per page.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 100
-  responses:
-    Unauthorized:
-      description: Authentication failed. The Bearer token is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed or contained invalid parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: Access denied. The token does not have the required permissions.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    InternalServerError:
-      description: An internal server error occurred.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+          description: A machine-readable error code.
   securitySchemes:
     bearerAuth:
       type: http

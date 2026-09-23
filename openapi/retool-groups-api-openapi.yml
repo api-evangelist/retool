@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Retool Management Apps Groups API
+  title: Retool Management Groups API
   description: The Retool Management API enables administrators to programmatically manage users, groups, permissions, apps, resources, workflows, folders, spaces, and source control integrations within a Retool organization. Authenticated via Bearer token generated in workspace settings. The API also supports SCIM 2.0 for enterprise identity provider provisioning via Okta and Azure AD.
   version: 1.0.0
   contact:
@@ -120,57 +120,54 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
+  responses:
+    Unauthorized:
+      description: Authentication failed. The Bearer token is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Access denied. The token does not have the required permissions.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalServerError:
+      description: An internal server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    userId:
+      name: userId
+      in: path
+      required: true
+      description: The unique UUID identifier of the user.
+      schema:
+        type: string
+        format: uuid
+    groupId:
+      name: groupId
+      in: path
+      required: true
+      description: The numeric identifier of the group.
+      schema:
+        type: integer
   schemas:
-    AddGroupMemberRequest:
-      type: object
-      required:
-      - userId
-      description: Request body for adding a user to a group.
-      properties:
-        userId:
-          type: string
-          format: uuid
-          description: The UUID of the user to add to the group.
-    Error:
-      type: object
-      description: An error response.
-      properties:
-        message:
-          type: string
-          description: A human-readable error message.
-        code:
-          type: string
-          description: A machine-readable error code.
-    CreateGroupRequest:
-      type: object
-      required:
-      - name
-      description: Request body for creating a new group.
-      properties:
-        name:
-          type: string
-          description: The name of the new group.
-    GroupListResponse:
-      type: object
-      description: List of groups.
-      properties:
-        data:
-          type: array
-          description: Array of group objects.
-          items:
-            $ref: '#/components/schemas/Group'
-    UserRef:
-      type: object
-      description: A reference to a user.
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: The user UUID.
-        email:
-          type: string
-          format: email
-          description: The user's email address.
     Group:
       type: object
       description: A Retool group for managing permissions.
@@ -194,53 +191,56 @@ components:
           type: string
           format: date-time
           description: Timestamp when the group was last updated.
-  parameters:
-    userId:
-      name: userId
-      in: path
-      required: true
-      description: The unique UUID identifier of the user.
-      schema:
-        type: string
-        format: uuid
-    groupId:
-      name: groupId
-      in: path
-      required: true
-      description: The numeric identifier of the group.
-      schema:
-        type: integer
-  responses:
-    Unauthorized:
-      description: Authentication failed. The Bearer token is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed or contained invalid parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: Access denied. The token does not have the required permissions.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    InternalServerError:
-      description: An internal server error occurred.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    AddGroupMemberRequest:
+      type: object
+      required:
+      - userId
+      description: Request body for adding a user to a group.
+      properties:
+        userId:
+          type: string
+          format: uuid
+          description: The UUID of the user to add to the group.
+    GroupListResponse:
+      type: object
+      description: List of groups.
+      properties:
+        data:
+          type: array
+          description: Array of group objects.
+          items:
+            $ref: '#/components/schemas/Group'
+    Error:
+      type: object
+      description: An error response.
+      properties:
+        message:
+          type: string
+          description: A human-readable error message.
+        code:
+          type: string
+          description: A machine-readable error code.
+    CreateGroupRequest:
+      type: object
+      required:
+      - name
+      description: Request body for creating a new group.
+      properties:
+        name:
+          type: string
+          description: The name of the new group.
+    UserRef:
+      type: object
+      description: A reference to a user.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The user UUID.
+        email:
+          type: string
+          format: email
+          description: The user's email address.
   securitySchemes:
     bearerAuth:
       type: http
