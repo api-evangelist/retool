@@ -113,8 +113,6 @@ apis:
     url: https://docs.retool.com/reference/api/v2
   - type: Authentication
     url: https://docs.retool.com/org-users/concepts/retool-api
-  - type: GraphQL
-    url: graphql/retool-graphql.md
 - aid: retool:retool-folders-api
   name: Retool Folders API
   description: Organize apps, resources, and workflows into folders for better team organization.
@@ -128,8 +126,6 @@ apis:
     url: https://docs.retool.com/reference/api/v2
   - type: Authentication
     url: https://docs.retool.com/org-users/concepts/retool-api
-  - type: GraphQL
-    url: graphql/retool-graphql.md
 - aid: retool:retool-groups-api
   name: Retool Groups API
   description: >-
@@ -147,8 +143,6 @@ apis:
     url: https://docs.retool.com/reference/api/v2
   - type: Authentication
     url: https://docs.retool.com/org-users/concepts/retool-api
-  - type: GraphQL
-    url: graphql/retool-graphql.md
 - aid: retool:retool-resources-api
   name: Retool Resources API
   description: Manage data source connections (databases, APIs, services) that power Retool queries.
@@ -162,8 +156,6 @@ apis:
     url: https://docs.retool.com/reference/api/v2
   - type: Authentication
     url: https://docs.retool.com/org-users/concepts/retool-api
-  - type: GraphQL
-    url: graphql/retool-graphql.md
 - aid: retool:retool-users-api
   name: Retool Users API
   description: >-
@@ -181,8 +173,6 @@ apis:
     url: https://docs.retool.com/reference/api/v2
   - type: Authentication
     url: https://docs.retool.com/org-users/concepts/retool-api
-  - type: GraphQL
-    url: graphql/retool-graphql.md
 common:
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/retool/overview
