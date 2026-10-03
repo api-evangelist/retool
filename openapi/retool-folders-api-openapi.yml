@@ -79,6 +79,39 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
+    Folder:
+      type: object
+      description: A Retool folder for organizing apps, resources, or workflows.
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the folder.
+        name:
+          type: string
+          description: The name of the folder.
+        folderType:
+          type: string
+          description: The type of content this folder organizes.
+          enum:
+          - app
+          - resource
+          - workflow
+        parentFolderId:
+          type: string
+          description: The identifier of the parent folder, if nested.
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the folder was created.
+    FolderListResponse:
+      type: object
+      description: List of folders.
+      properties:
+        data:
+          type: array
+          description: Array of folder objects.
+          items:
+            $ref: '#/components/schemas/Folder'
     Error:
       type: object
       description: An error response.
@@ -109,42 +142,15 @@ components:
         parentFolderId:
           type: string
           description: Place the folder inside another folder.
-    FolderListResponse:
-      type: object
-      description: List of folders.
-      properties:
-        data:
-          type: array
-          description: Array of folder objects.
-          items:
-            $ref: '#/components/schemas/Folder'
-    Folder:
-      type: object
-      description: A Retool folder for organizing apps, resources, or workflows.
-      properties:
-        id:
-          type: string
-          description: The unique identifier for the folder.
-        name:
-          type: string
-          description: The name of the folder.
-        folderType:
-          type: string
-          description: The type of content this folder organizes.
-          enum:
-          - app
-          - resource
-          - workflow
-        parentFolderId:
-          type: string
-          description: The identifier of the parent folder, if nested.
-        createdAt:
-          type: string
-          format: date-time
-          description: Timestamp when the folder was created.
   responses:
-    Forbidden:
-      description: Access denied. The token does not have the required permissions.
+    Unauthorized:
+      description: Authentication failed. The Bearer token is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
       content:
         application/json:
           schema:
@@ -155,14 +161,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication failed. The Bearer token is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed or contained invalid parameters.
+    Forbidden:
+      description: Access denied. The token does not have the required permissions.
       content:
         application/json:
           schema:
