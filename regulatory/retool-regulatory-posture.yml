@@ -1,0 +1,25 @@
+generated: '2026-10-04'
+method: probed
+source: https://docs.retool.com/legal/privacy-policy
+signals:
+  data_subject_request:
+    evidence:
+      - source: https://docs.retool.com/legal/privacy-policy
+        http_status: 200
+        fetched: "true"
+        quote: "If you would like to submit a data subject rights request, please email dpo@retool.com."
+    note: Provides a way for data subjects to request their rights via email.
+  data_retention:
+    evidence:
+      - source: https://docs.retool.com/legal/privacy-policy
+        http_status: 200
+        fetched: "true"
+        quote: "Depending on the Services, Customer may be able to customize its retention settings and apply those customized settings at the Custom App level or other level. The Customer may also apply different settings to Customer Data. ... Retool retains data in accordance with records retention obligations and limitation periods that are imposed by applicable law."
+    note: Describes retention settings and legal obligations.
+  age_limitations:
+    evidence:
+      - source: https://docs.retool.com/legal/privacy-policy
+        http_status: 200
+        fetched: "true"
+        quote: "These Services are not directed to individuals under the age of 18, and we kindly request they not provide any Information through the Services."
+    note: Services not for under 18.

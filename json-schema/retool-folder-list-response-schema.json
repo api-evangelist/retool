@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/retool/main/json-schema/retool-folder-list-response-schema.json",
+  "title": "FolderListResponse",
+  "description": "List of folders.",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/retool-folders-api-openapi.yml#/components/schemas/FolderListResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "description": "Array of folder objects.",
+      "items": {
+        "$ref": "#/$defs/Folder"
+      }
+    }
+  },
+  "$defs": {
+    "Folder": {
+      "type": "object",
+      "description": "A Retool folder for organizing apps, resources, or workflows.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier for the folder."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the folder."
+        },
+        "folderType": {
+          "type": "string",
+          "description": "The type of content this folder organizes.",
+          "enum": [
+            "app",
+            "resource",
+            "workflow"
+          ]
+        },
+        "parentFolderId": {
+          "type": "string",
+          "description": "The identifier of the parent folder, if nested."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the folder was created."
+        }
+      }
+    }
+  }
+}

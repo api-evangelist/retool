@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/retool/main/json-schema/retool-create-folder-request-schema.json",
+  "title": "CreateFolderRequest",
+  "description": "Request body for creating a new folder.",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/retool-folders-api-openapi.yml#/components/schemas/CreateFolderRequest",
+  "type": "object",
+  "required": [
+    "name",
+    "folderType"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the new folder."
+    },
+    "folderType": {
+      "type": "string",
+      "description": "The type of content this folder will organize.",
+      "enum": [
+        "app",
+        "resource",
+        "workflow"
+      ]
+    },
+    "parentFolderId": {
+      "type": "string",
+      "description": "Place the folder inside another folder."
+    }
+  }
+}

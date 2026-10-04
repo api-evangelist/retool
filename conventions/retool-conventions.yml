@@ -1,0 +1,29 @@
+generated: '2026-10-04'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://docs.retool.com/apps/guides/data/table/pagination
+sources:
+- https://docs.retool.com/apps/guides/data/table/pagination
+- https://docs.retool.com/apps/guides/interaction-navigation/pagination
+- https://docs.retool.com/apps/reference/components/pagination
+- https://docs.retool.com/apps/guides/custom/iframe
+idempotency:
+  coverage: none
+  evidence: The documentation does not describe any idempotency key header or mechanism for write operations.
+pagination:
+  style: limit‑offset, cursor, GraphQL Relay
+  params:
+  - limit (pageSize)
+  - offset (offset)
+  - starting_after / afterCursor (cursor)
+  - has_more / hasNextPage (has next page flag)
+  response_fields:
+  - pageSize
+  - offset
+  - afterCursor
+  - has_more
+  - hasNextPage
+  - total row count (if available)
+  evidence: The Table component supports Limit‑Offset, Cursor, and GraphQL Relay pagination. Parameters such as pagination.pageSize, pagination.offset,
+    pagination.afterCursor and flags like has_more are used. Total row count can be configured when the data source provides it.
+docs: https://docs.retool.com/apps/guides/data/table/pagination

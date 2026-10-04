@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/retool/main/json-schema/retool-user-list-response-schema.json",
+  "title": "UserListResponse",
+  "description": "Paginated list of users.",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/retool-users-api-openapi.yml#/components/schemas/UserListResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "description": "Array of user objects.",
+      "items": {
+        "$ref": "#/$defs/User"
+      }
+    },
+    "total": {
+      "type": "integer",
+      "description": "Total number of users in the organization."
+    },
+    "page": {
+      "type": "integer",
+      "description": "Current page number."
+    },
+    "pageSize": {
+      "type": "integer",
+      "description": "Number of records per page."
+    }
+  },
+  "$defs": {
+    "GroupRef": {
+      "type": "object",
+      "description": "A reference to a group.",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "The numeric group identifier."
+        },
+        "name": {
+          "type": "string",
+          "description": "The group name."
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "description": "A Retool user account.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "The unique identifier for the user."
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "The user's email address (unique within the organization)."
+        },
+        "firstName": {
+          "type": "string",
+          "description": "The user's first name."
+        },
+        "lastName": {
+          "type": "string",
+          "description": "The user's last name."
+        },
+        "isAdmin": {
+          "type": "boolean",
+          "description": "Whether the user has administrator privileges."
+        },
+        "isDisabled": {
+          "type": "boolean",
+          "description": "Whether the user account is disabled."
+        },
+        "userType": {
+          "type": "string",
+          "description": "The user type determining default access level. Default users have standard access; endUser accounts have limited access to embedded applications.",
+          "enum": [
+            "default",
+            "endUser"
+          ]
+        },
+        "groups": {
+          "type": "array",
+          "description": "Groups the user is a member of.",
+          "items": {
+            "$ref": "#/$defs/GroupRef"
+          }
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the user account was created."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the user account was last updated."
+        }
+      }
+    }
+  }
+}

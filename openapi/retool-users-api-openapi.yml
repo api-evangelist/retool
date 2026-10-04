@@ -146,43 +146,6 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
-  responses:
-    Unauthorized:
-      description: Authentication failed. The Bearer token is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed or contained invalid parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Conflict:
-      description: A conflict occurred, such as a duplicate email address.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    InternalServerError:
-      description: An internal server error occurred.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: Access denied. The token does not have the required permissions.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     pageSize:
       name: pageSize
@@ -194,14 +157,6 @@ components:
         minimum: 1
         maximum: 100
         default: 100
-    userId:
-      name: userId
-      in: path
-      required: true
-      description: The unique UUID identifier of the user.
-      schema:
-        type: string
-        format: uuid
     page:
       name: page
       in: query
@@ -211,6 +166,14 @@ components:
         type: integer
         minimum: 1
         default: 1
+    userId:
+      name: userId
+      in: path
+      required: true
+      description: The unique UUID identifier of the user.
+      schema:
+        type: string
+        format: uuid
   schemas:
     GroupRef:
       type: object
@@ -222,6 +185,33 @@ components:
         name:
           type: string
           description: The group name.
+    CreateUserRequest:
+      type: object
+      required:
+      - email
+      description: Request body for creating a new user.
+      properties:
+        email:
+          type: string
+          format: email
+          description: The email address for the new user (must be unique).
+        firstName:
+          type: string
+          description: The user's first name.
+        lastName:
+          type: string
+          description: The user's last name.
+        isAdmin:
+          type: boolean
+          description: Whether the user should have administrator privileges.
+          default: false
+        userType:
+          type: string
+          description: The user type (default or endUser).
+          enum:
+          - default
+          - endUser
+          default: default
     Error:
       type: object
       description: An error response.
@@ -232,22 +222,24 @@ components:
         code:
           type: string
           description: A machine-readable error code.
-    UpdateUserRequest:
+    UserListResponse:
       type: object
-      description: Request body for updating an existing user.
+      description: Paginated list of users.
       properties:
-        firstName:
-          type: string
-          description: The user's first name.
-        lastName:
-          type: string
-          description: The user's last name.
-        isAdmin:
-          type: boolean
-          description: Whether the user should have administrator privileges.
-        isDisabled:
-          type: boolean
-          description: Whether to disable the user account.
+        data:
+          type: array
+          description: Array of user objects.
+          items:
+            $ref: '#/components/schemas/User'
+        total:
+          type: integer
+          description: Total number of users in the organization.
+        page:
+          type: integer
+          description: Current page number.
+        pageSize:
+          type: integer
+          description: Number of records per page.
     User:
       type: object
       description: A Retool user account.
@@ -291,16 +283,10 @@ components:
           type: string
           format: date-time
           description: Timestamp when the user account was last updated.
-    CreateUserRequest:
+    UpdateUserRequest:
       type: object
-      required:
-      - email
-      description: Request body for creating a new user.
+      description: Request body for updating an existing user.
       properties:
-        email:
-          type: string
-          format: email
-          description: The email address for the new user (must be unique).
         firstName:
           type: string
           description: The user's first name.
@@ -310,32 +296,46 @@ components:
         isAdmin:
           type: boolean
           description: Whether the user should have administrator privileges.
-          default: false
-        userType:
-          type: string
-          description: The user type (default or endUser).
-          enum:
-          - default
-          - endUser
-          default: default
-    UserListResponse:
-      type: object
-      description: Paginated list of users.
-      properties:
-        data:
-          type: array
-          description: Array of user objects.
-          items:
-            $ref: '#/components/schemas/User'
-        total:
-          type: integer
-          description: Total number of users in the organization.
-        page:
-          type: integer
-          description: Current page number.
-        pageSize:
-          type: integer
-          description: Number of records per page.
+        isDisabled:
+          type: boolean
+          description: Whether to disable the user account.
+  responses:
+    Unauthorized:
+      description: Authentication failed. The Bearer token is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalServerError:
+      description: An internal server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Conflict:
+      description: A conflict occurred, such as a duplicate email address.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Access denied. The token does not have the required permissions.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

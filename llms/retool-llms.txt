@@ -7,11 +7,9 @@ This file contains links to documentation sections following the llmstxt.org sta
 ## Apps
 
 - [AI in classic app building](https://docs.retool.com/apps/concepts/ai): Learn how to utilize AI when building and editing classic apps.
-- [Managing security with Assist](https://docs.retool.com/apps/concepts/assist-security): Understand how Assist interacts with your data and LLMs.
 - [Classic app best practices](https://docs.retool.com/apps/concepts/best-practices/): Best practices for building performant classic apps.
 - [Module best practices](https://docs.retool.com/apps/concepts/best-practices/modules): Best practices for building modules.
 - [Classic app performance](https://docs.retool.com/apps/concepts/best-practices/performance): Best practices for building performant classic apps.
-- [Prompting best practices](https://docs.retool.com/apps/concepts/best-practices/prompts): Best practices for writing prompts for Assist.
 - [Testing best practices](https://docs.retool.com/apps/concepts/best-practices/testing): Best practices for testing classic apps.
 - [Command Palette](https://docs.retool.com/apps/concepts/command-palette): Learn about Retool's Command Palette and its global search and commands.
 - [Components](https://docs.retool.com/apps/concepts/components/): Learn more about Retool's UI components.
@@ -19,13 +17,13 @@ This file contains links to documentation sections following the llmstxt.org sta
 - [Custom CSS styles](https://docs.retool.com/apps/concepts/custom-css): Learn more about using custom CSS in classic apps.
 - [Debug Tools](https://docs.retool.com/apps/concepts/debug-tools): Investigate and resolve issues with Retool's built-in debugging tools.
 - [Classic app IDE](https://docs.retool.com/apps/concepts/ide): Learn about Retool's IDE for classic app development.
+- [Introduction to classic apps](https://docs.retool.com/apps/concepts/intro): Learn about the fundamental concepts of classic apps.
 - [Multiplayer](https://docs.retool.com/apps/concepts/multiplayer): Learn about collaborative classic app building for real-time development.
 - [Notifications](https://docs.retool.com/apps/concepts/notifications): Learn more about notifications and their global settings.
 - [Programming paradigms at Retool](https://docs.retool.com/apps/concepts/programming-paradigms): Learn about the programming styles supported by Retool and their use.
 - [Embedded apps](https://docs.retool.com/apps/concepts/share-externally/embed): Learn about embedding classic apps in your existing web applications with support for authentication.
 - [External apps](https://docs.retool.com/apps/concepts/share-externally/external): Build classic apps and customize the experience for external users.
 - [Share your classic apps externally](https://docs.retool.com/apps/concepts/share-externally/): Share your classic apps with users outside your organization.
-- [Assist Token management](https://docs.retool.com/apps/concepts/token-management): Token management best practices for building apps with Assist.
 - [Usability features](https://docs.retool.com/apps/concepts/usability): Learn more about usability features.
 - [Classic apps concept guides](https://docs.retool.com/apps/concepts): Learn about relevant features, functionality, and principles related to classic apps.
 - [Add documentation to classic apps](https://docs.retool.com/apps/guides/app-management/app-documentation): Learn how to add a README and user documentation to classic apps.
@@ -33,17 +31,15 @@ This file contains links to documentation sections following the llmstxt.org sta
 - [Embed classic apps](https://docs.retool.com/apps/guides/app-management/embed-apps): Learn how to embed classic apps with optional authentication.
 - [Build custom pages](https://docs.retool.com/apps/guides/app-management/external-apps/custom-pages): Learn how to build custom pages in Retool.
 - [Create external classic apps](https://docs.retool.com/apps/guides/app-management/external-apps/): Learn how to enable and customize the external app experience.
-- [Build a landing page](https://docs.retool.com/apps/guides/app-management/external-apps/landing-pages): Learn how to use landing pages to automatically route external users to pre-specified classic apps.
 - [Configure user actions for users](https://docs.retool.com/apps/guides/app-management/external-apps/user-actions): Learn how to write User Action queries that allow users to authenticate using custom product pages.
 - [Import and export classic apps](https://docs.retool.com/apps/guides/app-management/import-export): Learn how to import and export classic apps.
 - [Classic app management](https://docs.retool.com/apps/guides/app-management/): Learn how to manage, share, and release classic apps.
+- [Build a landing page](https://docs.retool.com/apps/guides/app-management/landing-pages): Learn how to use landing pages to automatically route users to pre-specified apps.
 - [Localize classic apps](https://docs.retool.com/apps/guides/app-management/localization): Learn how to localize your Retool applications.
 - [Version and release classic apps](https://docs.retool.com/apps/guides/app-management/releases-history): Learn how to version classic apps or revert changes to a previous state.
 - [Preview and share classic apps with users](https://docs.retool.com/apps/guides/app-management/share): Learn how to preview and share classic apps with users.
 - [Configure URL parameters](https://docs.retool.com/apps/guides/app-management/url-parameters): Learn how to control classic app behavior and pass values using URL parameters.
-- [Configure your organization for Assist](https://docs.retool.com/apps/guides/assist/configure): Learn how to configure your organization so your users can use Assist.
-- [AI-assisted app generation with Assist](https://docs.retool.com/apps/guides/assist/): Use Assist to generate classic apps.
-- [Prompt with Assist](https://docs.retool.com/apps/guides/assist/prompt): Learn how to prompt Assist to edit or create classic apps.
+- [Assist](https://docs.retool.com/apps/guides/assist-deprecated): :::warning
 - [Build custom React components](https://docs.retool.com/apps/guides/custom/custom-component-libraries/): Learn how to develop and deploy custom React components for classic apps.
 - [Use Retool custom component library](https://docs.retool.com/apps/guides/custom/custom-component-libraries/retool-ccl): Learn how to use the Retool custom component library with your custom component.
 - [Use TypeScript API to configure custom components](https://docs.retool.com/apps/guides/custom/custom-component-libraries/typescript-api): Learn how to configure custom React components with TypeScript API.
@@ -71,7 +67,7 @@ This file contains links to documentation sections following the llmstxt.org sta
 - [Getting started with file inputs](https://docs.retool.com/apps/guides/forms-inputs/file-inputs): Learn how to upload files and images in classic apps.
 - [Getting started with the Form component](https://docs.retool.com/apps/guides/forms-inputs/forms/form-component): Learn how to assemble an input form using the Form component.
 - [Getting started with the Form and JSON Schema Form components](https://docs.retool.com/apps/guides/forms-inputs/forms/): Learn how to build forms using components or JSON Schema to collect user input.
-- [Getting started with the JSON Schema Form component](https://docs.retool.com/apps/guides/forms-inputs/forms/json-schema-form): :::info
+- [Getting started with the JSON Schema Form component](https://docs.retool.com/apps/guides/forms-inputs/forms/json-schema-form): [JSON Schema Form](../../../reference/components/containers-forms/json-schema-form.mdx) is based on the [react-jsonschema-form](https://github.com/...
 - [Forms and inputs](https://docs.retool.com/apps/guides/forms-inputs/): Learn how to gather user inputs through forms and various input types.
 - [Validate inputs and forms](https://docs.retool.com/apps/guides/forms-inputs/input-validation): Learn how to validate forms and input components.
 - [Getting started with number inputs](https://docs.retool.com/apps/guides/forms-inputs/number-inputs): Learn how to collect number values with input components in classic apps.
@@ -109,7 +105,6 @@ This file contains links to documentation sections following the llmstxt.org sta
 - [Share data between classic app pages](https://docs.retool.com/apps/guides/share-page-data): Learn how to pass data between pages in classic apps.
 - [Classic app how-to guides](https://docs.retool.com/apps/guides): Step-by-step instructions for using common features and functionality in classic apps.
 - [Classic apps documentation](https://docs.retool.com/apps/): Build classic apps with rich interfaces, powered by your data.
-- [Classic apps quickstart](https://docs.retool.com/apps/quickstart): Learn about the fundamental concepts of classic apps.
 - [The Button Group component for classic apps](https://docs.retool.com/apps/reference/components/buttons/button-group): A group of buttons to trigger actions when clicked.
 - [The Button component for classic apps](https://docs.retool.com/apps/reference/components/buttons/button): A button to trigger actions when clicked.
 - [The Close Button component for classic apps](https://docs.retool.com/apps/reference/components/buttons/close-button): A button with preconfigured icon that trigger actions when clicked.
@@ -274,18 +269,9 @@ This file contains links to documentation sections following the llmstxt.org sta
 - [The Theme object](https://docs.retool.com/apps/reference/objects/theme): Information about the current classic app theme.
 - [The Url object](https://docs.retool.com/apps/reference/objects/url): Information about URL query and hash parameters currently in use.
 - [The Viewport object](https://docs.retool.com/apps/reference/objects/viewport): Information about the canvas size in the current viewport.
-- [Retool CLI reference](https://docs.retool.com/apps/reference/retool-cli): A command-line tool for interacting with Retool.
+- [Retool Classic CLI reference](https://docs.retool.com/apps/reference/retool-cli): A command-line tool for interacting with Retool.
 - [Built-in URL parameters](https://docs.retool.com/apps/reference/url-parameters): Learn about built-in URL parameters to control classic app behavior.
 - [Classic apps reference](https://docs.retool.com/apps/reference): Reference documentation for classic apps.
-- [Classic apps tutorial: Save changes to data](https://docs.retool.com/apps/tutorial/part-one/code): Learn how to connect write queries and configure event handlers to save changes.
-- [Classic apps tutorial: Connect and query data](https://docs.retool.com/apps/tutorial/part-one/data): Learn how to connect a data source and retrieve customer data using queries.
-- [Classic apps tutorial: Fundamental concepts](https://docs.retool.com/apps/tutorial/part-one/): This part covers the fundamental concepts of building a classic app. You'll create a customer management dashboard that:
-- [Classic apps tutorial: Assemble the user interface](https://docs.retool.com/apps/tutorial/part-one/ui): Learn how to assemble the user interface of a classic app.
-- [Classic apps tutorial: Advanced features](https://docs.retool.com/apps/tutorial/part-two/): Build upon the classic app you created in part one and add more functionality.
-- [Classic app tutorial: Map and filter data](https://docs.retool.com/apps/tutorial/part-two/map-filter-data): Learn how to map data to components and filter table rows.
-- [Classic apps tutorial: Configure multiple pages](https://docs.retool.com/apps/tutorial/part-two/pages): Learn how to add multiple pages to your classic app's interface.
-- [Classic app tutorial: Pass data between pages](https://docs.retool.com/apps/tutorial/part-two/variables): Learn how to use a variable to automatically sync the selected customer between pages.
-- [Classic apps tutorial](https://docs.retool.com/apps/tutorial): A hands-on introduction to classic apps.
 
 ## Agents
 
@@ -478,7 +464,7 @@ This file contains links to documentation sections following the llmstxt.org sta
 - [Grant broad access and restrict with exceptions](https://docs.retool.com/data-sources/guides/access-policies/exceptions): Give groups broad access to a resource and restrict access with exceptions.
 - [Access policies](https://docs.retool.com/data-sources/guides/access-policies/): Learn about access policies on Retool resources.
 - [Restrict rows with filters](https://docs.retool.com/data-sources/guides/access-policies/row-filters): Learn how to add row filters to an access policy so a group uses only the rows it needs.
-- [Troubleshoot access policies](https://docs.retool.com/data-sources/guides/access-policies/troubleshooting): Diagnose queries that fail, return fewer rows than expected, or stop working after enforcement is turned on.
+- [Troubleshooting access policies](https://docs.retool.com/data-sources/guides/access-policies/troubleshooting): Diagnose queries that fail, return fewer rows than expected, or stop working after enforcement is turned on.
 - [Use a separate resource for workflow queries](https://docs.retool.com/data-sources/guides/access-policies/workflow-resource): Configure resources so workflows keep running when data access enforcement is turned on.
 - [Configure API authentication](https://docs.retool.com/data-sources/guides/authentication/api): Learn how to configure API authentication on your resources.
 - [Custom authentication JavaScript libraries](https://docs.retool.com/data-sources/guides/authentication/custom-auth-libraries): Reference list of JavaScript libraries available in Retool custom authentication JavaScript steps.
@@ -506,18 +492,17 @@ This file contains links to documentation sections following the llmstxt.org sta
 - [Connect to OpenAI](https://docs.retool.com/data-sources/guides/integrations/ai/openai): Connect to OpenAI and use their models for AI-powered apps and automations in Retool.
 - [Connect to Amazon Athena](https://docs.retool.com/data-sources/guides/integrations/analytics/amazon-athena): Learn how to connect Amazon Athena to Retool.
 - [Connect to Databricks Lakehouse](https://docs.retool.com/data-sources/guides/integrations/analytics/databricks): Learn how to connect Databricks Lakehouse to Retool.
-- [Connect to Datadog](https://docs.retool.com/data-sources/guides/integrations/analytics/datadog): Learn how to connect Datadog to Retool.
+- [Connect to Datadog](https://docs.retool.com/data-sources/guides/integrations/analytics/datadog): Connect Datadog to Retool and query monitors, metrics, logs, and events.
 - [Connect to Elasticsearch](https://docs.retool.com/data-sources/guides/integrations/analytics/elasticsearch): Learn how to connect your Elasticsearch database to Retool.
 - [Analytics integration guides](https://docs.retool.com/data-sources/guides/integrations/analytics/): Learn how to connect analytics integrations to Retool with built-in solutions.
 - [Connect to MotherDuck](https://docs.retool.com/data-sources/guides/integrations/analytics/motherduck): Connect MotherDuck to Retool and query analytics data, build dashboards, and manage records with DuckDB SQL.
 - [Connect to GraphQL](https://docs.retool.com/data-sources/guides/integrations/api/graphql): Connect GraphQL APIs to Retool and query and mutate data.
 - [API integration guides](https://docs.retool.com/data-sources/guides/integrations/api/): Learn how to connect different types of APIs to Retool with built-in solutions.
-- [Connect to an external MCP server](https://docs.retool.com/data-sources/guides/integrations/api/mcp): Connect Retool to an external MCP server and give agents access to its tools.
+- [Connect to an external MCP server](https://docs.retool.com/data-sources/guides/integrations/api/mcp): Connect Retool to an external MCP server and give agents and apps access to its tools.
 - [Connect to Microsoft Graph](https://docs.retool.com/data-sources/guides/integrations/api/microsoft-graph): Connect Microsoft Graph to Retool to read and manage Microsoft 365 users, mail, calendars, files, and teams.
 - [Connect to OpenAPI](https://docs.retool.com/data-sources/guides/integrations/api/openapi): Learn how to connect to APIs using OpenAPI specifications in Retool.
 - [Connect to REST API](https://docs.retool.com/data-sources/guides/integrations/api/rest): Learn how to connect to REST APIs and make HTTP requests in Retool.
 - [Connect to the Retool API](https://docs.retool.com/data-sources/guides/integrations/api/retool-api): Learn how to connect the Retool API using the OpenAPI integration.
-- [Connect a SOAP API](https://docs.retool.com/data-sources/guides/integrations/api/soap): Learn how to connect SOAP APIs to Retool using the REST API integration.
 - [Connect to Close](https://docs.retool.com/data-sources/guides/integrations/crm/close): Connect Close to Retool and manage leads, contacts, and opportunities.
 - [Connect to Front](https://docs.retool.com/data-sources/guides/integrations/crm/front): Connect Front to Retool and manage conversations, messages, and contacts.
 - [Connect to HubSpot](https://docs.retool.com/data-sources/guides/integrations/crm/hubspot): Connect HubSpot to Retool and manage contacts, companies, deals, and tickets.
@@ -534,7 +519,7 @@ This file contains links to documentation sections following the llmstxt.org sta
 - [Connect to CouchDB](https://docs.retool.com/data-sources/guides/integrations/database/couchdb): Learn how to connect to CouchDB and query, manage documents in Retool.
 - [Connect to Databricks Lakebase](https://docs.retool.com/data-sources/guides/integrations/database/databricks-lakebase): Learn how to connect Databricks Lakebase to Retool.
 - [Database integration guides](https://docs.retool.com/data-sources/guides/integrations/database/): Learn how to connect database integrations to Retool with built-in solutions.
-- [Connect to JDBC](https://docs.retool.com/data-sources/guides/integrations/database/jdbc): Learn how to connect a JDBC driver to Retool.
+- [Connect to JDBC](https://docs.retool.com/data-sources/guides/integrations/database/jdbc): Connect any JDBC-compatible database to Retool using a custom or Retool-bundled driver.
 - [Connect to Microsoft SQL Server](https://docs.retool.com/data-sources/guides/integrations/database/microsoft-sql-server): Connect Microsoft SQL Server to Retool to query data, manage records, and build apps and automations with T-SQL.
 - [Connect to MongoDB](https://docs.retool.com/data-sources/guides/integrations/database/mongodb): Connect MongoDB to Retool and query documents, run aggregations, and manage collections.
 - [Connect to MySQL](https://docs.retool.com/data-sources/guides/integrations/database/mysql): Connect MySQL to Retool to query data, manage records, and build apps and automations with SQL.
@@ -546,7 +531,6 @@ This file contains links to documentation sections following the llmstxt.org sta
 - [Connect to SAP HANA](https://docs.retool.com/data-sources/guides/integrations/database/sap-hana): Connect SAP HANA to Retool and query and manage data with SQL.
 - [Connect to Snowflake Postgres](https://docs.retool.com/data-sources/guides/integrations/database/snowflake-postgres): Connect Snowflake Postgres to Retool and read and write data in your database.
 - [Connect to Snowflake](https://docs.retool.com/data-sources/guides/integrations/database/snowflake): Connect Snowflake to Retool to query data, manage records, and build apps, workflows, and agents with SQL.
-- [Connect to Vertica](https://docs.retool.com/data-sources/guides/integrations/database/vertica): Learn how to connect your Vertica database to Retool.
 - [Connect to AWS Lambda](https://docs.retool.com/data-sources/guides/integrations/development/aws-lambda): Learn how to connect AWS Lambda to Retool.
 - [Connect to CircleCI](https://docs.retool.com/data-sources/guides/integrations/development/circleci): Connect CircleCI to Retool and manage pipelines, workflows, and jobs.
 - [Connect to Firebase](https://docs.retool.com/data-sources/guides/integrations/development/firebase): Connect Firebase to Retool and manage Firestore, Realtime Database, and Authentication data.
@@ -602,7 +586,7 @@ This file contains links to documentation sections following the llmstxt.org sta
 - [Use Retool Database with multiple environments](https://docs.retool.com/data-sources/guides/retool-database/multiple-environments): Learn how to use Retool Database with multiple environments.
 - [Shell script resource](https://docs.retool.com/data-sources/guides/shell-scripts/shell-script-resource): :::note Beta
 - [Run shell scripts on remote hosts](https://docs.retool.com/data-sources/guides/shell-scripts/): :::info beta
-- [Troubleshoot resource connections](https://docs.retool.com/data-sources/guides/troubleshooting): Learn about common data source connection issues and how to resolve them.
+- [Troubleshooting resource connections](https://docs.retool.com/data-sources/guides/troubleshooting): Learn about common data source connection issues and how to resolve them.
 - [Manage embeddings in Retool-managed Vectors](https://docs.retool.com/data-sources/guides/vectors/embeddings): Learn how to manage text embeddings stored in Retool-managed Vectors.
 - [Use Retool AI to query vectors with filters and metadata](https://docs.retool.com/data-sources/guides/vectors/filters): Learn how to query Retool Vectors using filters and metadata.
 - [Store vector embeddings for AI actions](https://docs.retool.com/data-sources/guides/vectors/): Learn how to store embeddings for AI actions with Retool-managed Vectors.
@@ -776,7 +760,7 @@ This file contains links to documentation sections following the llmstxt.org sta
 - [Custom code execution security](https://docs.retool.com/self-hosted/self-managed/concepts/custom-code-execution-security): How Retool sandboxes custom code across services and the container privilege requirements for each.
 - [Hardened images for self-hosted Retool](https://docs.retool.com/self-hosted/self-managed/concepts/hardened-images): Learn about hardened images for self-hosted Retool, including security changes, ARM64 support, and migration guidance.
 - [Multi-instance deployment](https://docs.retool.com/self-hosted/self-managed/concepts/multi-instance-deployment): Learn about deploying self-hosted Retool to multiple instances.
-- [AI for self-hosted deployments](https://docs.retool.com/self-hosted/self-managed/concepts/retool-ai): Learn about using AI with self-hosted deployments.
+- [AI for self-hosted instances](https://docs.retool.com/self-hosted/self-managed/concepts/retool-ai): Learn about using AI with self-hosted instances.
 - [Temporal Clusters for Self-hosted Retool](https://docs.retool.com/self-hosted/self-managed/concepts/temporal): Learn about Temporal Clusters for self-hosted Retool deployments.
 - [Self-hosted Retool upgrade best practices](https://docs.retool.com/self-hosted/self-managed/concepts/update-deployment): Learn about best practices for upgrading your self-hosted Retool deployment.
 - [Self-hosted Retool concept guides](https://docs.retool.com/self-hosted/self-managed/concepts): Learn about relevant features, functionality, and principles related to self-hosted Retool.
@@ -788,6 +772,7 @@ This file contains links to documentation sections following the llmstxt.org sta
 - [Migrate from Self-hosted to Cloud](https://docs.retool.com/self-hosted/self-managed/guides/migration/migrate-to-cloud): Learn how to migrate from a self-hosted deployment to Retool Cloud.
 - [Multiplayer for self-hosted classic apps](https://docs.retool.com/self-hosted/self-managed/guides/multiplayer): Learn how to set up multiplayer for classic apps on a self-hosted deployment.
 - [Configure same-origin and sandbox for iframes](https://docs.retool.com/self-hosted/self-managed/guides/origin-sandbox): Learn how to configure same-origin policy and sandboxing for iframes and custom components.
+- [Configure the app builder's orchestration backend](https://docs.retool.com/self-hosted/self-managed/guides/pg-boss-orchestration-backend): Learn how to run Retool's app builder on pg-boss instead of Temporal, and how to switch between the two.
 - [Prevent users from creating or using specific resource types](https://docs.retool.com/self-hosted/self-managed/guides/resource-restrictions): Learn how to restrict users from creating or using certain resource integration types.
 - [Set up Retool Database on Self-hosted deployments](https://docs.retool.com/self-hosted/self-managed/guides/retool-database): Learn how to configure Retool Database on self-hosted Retool deployments.
 - [Set up Retool Storage on Self-hosted deployments](https://docs.retool.com/self-hosted/self-managed/guides/retool-storage): Learn how to configure Retool Storage on self-hosted Retool deployments.
@@ -801,14 +786,16 @@ This file contains links to documentation sections following the llmstxt.org sta
 - [Retrieve secrets from HashiCorp Vault](https://docs.retool.com/self-hosted/self-managed/guides/secrets/hashicorp-vault): Learn how to use HashiCorp Vault to store your Retool resource secrets.
 - [Self-hosted Retool secrets management guides](https://docs.retool.com/self-hosted/self-managed/guides/secrets/): Use secrets from third-party secrets managers in Self-hosted Retool.
 - [Configure multiple Secrets Manager configurations](https://docs.retool.com/self-hosted/self-managed/guides/secrets/multi-config): You can create multiple [Secrets Manager](./index.mdx) configurations if you need to retrieve <Glossary name="secrets">secrets</Glossary> from diff...
-- [Configure scoped secret access for resources](https://docs.retool.com/self-hosted/self-managed/guides/secrets/scoped-secrets): Restrict secrets usage to specific resource folders using naming enforcement.
+- [Configure scoped secret access for resources and workflows](https://docs.retool.com/self-hosted/self-managed/guides/secrets/scoped-secrets): Restrict secrets usage to specific resource or workflow folders using naming enforcement.
 - [Configure and migrate to an external platform database](https://docs.retool.com/self-hosted/self-managed/guides/storage-database): Learn how to configure and migrate the platform database for self-hosted Retool instances.
 - [Collect self-hosted telemetry data](https://docs.retool.com/self-hosted/self-managed/guides/telemetry): Learn how to collect telemetry data from your self-hosted deployment instance.
-- [Upgrade or migrate self-hosted Retool](https://docs.retool.com/self-hosted/self-managed/guides/upgrade/): Guides for upgrading and migrating existing self-hosted Retool deployments to the latest version.
-- [Migrate from Docker Compose to Kubernetes](https://docs.retool.com/self-hosted/self-managed/guides/upgrade/migrate-docker-compose-to-kubernetes): Migrate a production Retool deployment from Docker Compose to a supported Kubernetes blueprints deployment.
-- [Migrate from ECS to Kubernetes](https://docs.retool.com/self-hosted/self-managed/guides/upgrade/migrate-ecs-to-kubernetes): Migrate an existing Retool deployment on Amazon ECS to a supported Kubernetes blueprints deployment.
-- [Upgrade your Docker Compose deployment](https://docs.retool.com/self-hosted/self-managed/guides/upgrade/upgrade-docker-compose): Upgrade an existing self-hosted Retool Docker Compose deployment to self-hosted Retool 4.0 and later.
-- [Upgrade your Helm deployment](https://docs.retool.com/self-hosted/self-managed/guides/upgrade/upgrade-helm): Upgrade an existing self-hosted Retool Helm deployment to the latest version.
+- [Troubleshooting self-managed instances](https://docs.retool.com/self-hosted/self-managed/guides/troubleshooting): Diagnose and resolve common issues with self-managed Retool deployments.
+- [Upgrade from Retool 3.x to 4.0](https://docs.retool.com/self-hosted/self-managed/guides/upgrade/3x/): Upgrade an existing self-hosted Retool 3.x instance to Retool 4.0.
+- [Upgrade within the Retool 4.x line](https://docs.retool.com/self-hosted/self-managed/guides/upgrade/4x/): Upgrade an existing self-hosted Retool 4.x instance to a later 4.x stable release.
+- [Upgrade or migrate self-hosted Retool](https://docs.retool.com/self-hosted/self-managed/guides/upgrade/): Guides for upgrading and migrating existing self-hosted Retool instances.
+- [Migrate from Docker Compose to Kubernetes](https://docs.retool.com/self-hosted/self-managed/guides/upgrade/migrate/docker-compose): Migrate a production Retool deployment from Docker Compose to a supported Kubernetes blueprints deployment.
+- [Migrate from ECS to Kubernetes](https://docs.retool.com/self-hosted/self-managed/guides/upgrade/migrate/ecs-to-kubernetes): Migrate an existing Retool deployment on Amazon ECS to a supported Kubernetes blueprints deployment.
+- [Migrate a self-hosted Retool instance](https://docs.retool.com/self-hosted/self-managed/guides/upgrade/migrate/): Guides for migrating existing self-hosted Retool instances to supported infrastructure.
 - [Enable Retool-managed Vectors on self-hosted deployments](https://docs.retool.com/self-hosted/self-managed/guides/vectors): Learn how to configure and enable Retool-managed Vectors for self-hosted Retool deployments.
 - [Self-hosted Retool how-to guides](https://docs.retool.com/self-hosted/self-managed/guides): Step-by-step instructions for common features and functionality of self-hosted Retool deployments.
 - [Self-hosted, self-managed](https://docs.retool.com/self-hosted/self-managed/): Host and manage a self-hosted, self-managed Retool instance on your own infrastructure.
@@ -860,7 +847,7 @@ This file contains links to documentation sections following the llmstxt.org sta
 - [Manage configuration](https://docs.retool.com/org-users/guides/configuration/): <DocCardList />
 - [Manage users in your organization](https://docs.retool.com/org-users/guides/external/): <DocCardList />
 - [Integrate Intercom Messenger for end-users](https://docs.retool.com/org-users/guides/external/intercom-messenger): Learn how to bring your own Intercom Messenger client to provide support directly to end-users in your apps.
-- [MCP for organization and user management](https://docs.retool.com/org-users/guides/mcp): Use Retool's MCP server to manage your organization and its users.
+- [Use Retool's MCP server](https://docs.retool.com/org-users/guides/mcp): Use Retool's MCP server to manage your organization and its users or for app building.
 - [View user audit logs](https://docs.retool.com/org-users/guides/monitoring/audit-logs): Learn how to view and query user audit logs.
 - [Monitor usage and logs](https://docs.retool.com/org-users/guides/monitoring/): <DocCardList />
 - [Redact sandbox tokens from ingress access logs](https://docs.retool.com/org-users/guides/monitoring/redact-ingress-log-tokens): Set up your network gateway to redact short-lived authentication tokens from access logs.
@@ -869,6 +856,7 @@ This file contains links to documentation sections following the llmstxt.org sta
 - [Automate user onboarding using the Retool API](https://docs.retool.com/org-users/guides/retool-api/automate-onboarding): Learn how to programmatically onboard users to your Retool instance with the Retool API.
 - [Automate Spaces configuration using the Retool API](https://docs.retool.com/org-users/guides/retool-api/automate-spaces): Learn how to programmatically configure Spaces using the Retool API.
 - [Retool API how-to guides](https://docs.retool.com/org-users/guides/retool-api/): Manage your organization and its users with the Retool API.
+- [Troubleshooting users and organizations](https://docs.retool.com/org-users/guides/troubleshooting): Diagnose and resolve common issues with user management, provisioning, and seats.
 - [User management how-to guides](https://docs.retool.com/org-users/guides/user-management/): Learn how to manage users in Retool.
 - [Enable passwordless login](https://docs.retool.com/org-users/guides/user-management/passwordless-login): Allow users to sign in with a link sent to their email instead of a password.
 - [Enable two-factor authentication](https://docs.retool.com/org-users/guides/user-management/two-factor-authentication): Learn how to configure two-factor authentication for your Retool organization.
@@ -894,6 +882,7 @@ This file contains links to documentation sections following the llmstxt.org sta
 - [Permissions concept guides](https://docs.retool.com/permissions/concepts): Learn about features, functionality, and principles related to permissions and access control in Retool.
 - [Manage permissions for Retool Agents](https://docs.retool.com/permissions/guides/agent-permissions): Learn how to manage permissions and access for Retool Agents.
 - [Assign roles to groups](https://docs.retool.com/permissions/guides/business/assign-roles): Assign organization roles and object roles to permission groups in Retool.
+- [Create an object role](https://docs.retool.com/permissions/guides/business/create-object-roles): Create and manage object roles to control group access to apps, resources, workflows, and agents in Retool.
 - [Create an organization role](https://docs.retool.com/permissions/guides/business/create-org-roles): Create and manage organization roles to delegate access to Retool administrative settings without granting full admin privileges.
 - [Configure draft app permissions](https://docs.retool.com/permissions/guides/business/draft-apps): Learn how to control which groups can create draft apps in Retool, and how to disable drafts organization-wide.
 - [Manage RBAC with the Retool API](https://docs.retool.com/permissions/guides/business/manage-rbac-with-api): Use the Retool API to programmatically manage roles, role grants, and object permissions.
@@ -901,8 +890,6 @@ This file contains links to documentation sections following the llmstxt.org sta
 - [Permissions on Business plan](https://docs.retool.com/permissions/guides/business): Configure groups, roles, and access control on the Business plan in Retool.
 - [Groups](https://docs.retool.com/permissions/guides/configure-permission-groups): Bundle users into shared groups in Retool to grant roles and control access to apps, resources, workflows, and agents.
 - [Restrict access with the current_user object](https://docs.retool.com/permissions/guides/current-user): Use the current_user object to filter query results, control component visibility, and implement row-level security in Retool apps.
-- [Create an object role](https://docs.retool.com/permissions/guides/enterprise/create-object-roles): Create and manage object roles to control group access to apps, resources, workflows, and agents in Retool.
-- [Permissions on Enterprise plan](https://docs.retool.com/permissions/guides/enterprise): Configure admin granularity and advanced organization roles on an Enterprise plan in Retool.
 - [Permissions on Free and Team plans](https://docs.retool.com/permissions/guides/free-and-team/): Understand how permissions work on Free and Team plans in Retool.
 - [Manage users](https://docs.retool.com/permissions/guides/manage-users): Learn how to invite users and manage group membership from Settings > Users.
 - [Manage permissions for resources](https://docs.retool.com/permissions/guides/resource-permissions): Learn how to manage permissions and access for Retool resources.
@@ -919,6 +906,8 @@ This file contains links to documentation sections following the llmstxt.org sta
 
 ## SSO
 
+- [SSO best practices](https://docs.retool.com/sso/concepts/best-practices): Recommendations for configuring, testing, and operating SSO.
+- [SSO concept guides](https://docs.retool.com/sso/concepts): Learn about relevant features, functionality, and principles related to single sign-on (SSO).
 - [Enforce SSO](https://docs.retool.com/sso/guides/authentication/enforce-sso): Learn how to disable Retool's standard authentication and require SSO authentication.
 - [Restrict SSO domains](https://docs.retool.com/sso/guides/authentication/restrict-domains): Learn how to restrict SSO authentication to a list of approved domains.
 - [Configure SSO session duration](https://docs.retool.com/sso/guides/authentication/short-session): Learn how to toggle between short and long SSO session times.
@@ -929,6 +918,7 @@ This file contains links to documentation sections following the llmstxt.org sta
 - [Enable JIT user provisioning for SSO](https://docs.retool.com/sso/guides/jit-provisioning): Learn how to enable JIT user provisioning for SSO.
 - [Migrate from SAML to OIDC](https://docs.retool.com/sso/guides/saml-to-oidc): Learn how to migrate your SSO configuration from SAML to OIDC.
 - [Provision users with SCIM](https://docs.retool.com/sso/guides/scim-user-provisioning): Learn how to implement SCIM user provisioning with Okta or Microsoft Entra ID.
+- [Troubleshooting SSO](https://docs.retool.com/sso/guides/troubleshooting): Diagnose and resolve common issues with SSO authentication, group sync, and user provisioning.
 - [SSO how-to guides](https://docs.retool.com/sso/guides): Step-by-step instructions for common features and functionality of single sign-on (SSO).
 - [SSO documentation](https://docs.retool.com/sso/): Authenticate users on Retool with identity providers using Single Sign-on (SSO).
 - [SSO quickstart](https://docs.retool.com/sso/quickstart): Learn about the fundamental concepts of authenticating users in your Retool organization with single-sign on.
@@ -950,6 +940,7 @@ This file contains links to documentation sections following the llmstxt.org sta
 
 ## Source Control
 
+- [Source Control best practices](https://docs.retool.com/source-control/concepts/best-practices): Recommendations for structuring branches, instances, and deployments with Source Control.
 - [Catch-up commits in Source Control](https://docs.retool.com/source-control/concepts/catch-up-commits): Learn more about how Retool uses catch-up commits and how to disable them.
 - [Multi-instance development with Source Control](https://docs.retool.com/source-control/concepts/multi-instance-development): Learn more about using multiple instances of your deployment with Source Control.
 - [Toolscript](https://docs.retool.com/source-control/concepts/toolscript): Learn how Retool uses Toolscript to serialize apps.
@@ -959,7 +950,9 @@ This file contains links to documentation sections following the llmstxt.org sta
 - [Manage Source Control branches](https://docs.retool.com/source-control/guides/manage-branches): Learn how to view, edit, delete, and switch Source Control branches.
 - [Manage Source Control deployments](https://docs.retool.com/source-control/guides/manage-deployment): Learn how to manage and monitor Source Control deployments on your self-hosted Retool instance.
 - [Migrate from YAML to Toolscript](https://docs.retool.com/source-control/guides/migrate-yaml-to-toolscript): Learn how to migrate your apps, modules, and resources from YAML to Toolscript.
-- [Multi-instance releases](https://docs.retool.com/source-control/guides/multi-instance-releases): Learn how to create and manage releases across instances
+- [Multi-instance releases for apps](https://docs.retool.com/source-control/guides/multi-instance-releases/apps): Learn how to create and manage releases across instances
+- [Multi-instance releases for classic apps and workflows](https://docs.retool.com/source-control/guides/multi-instance-releases/classic-apps-workflows): Learn how to create and manage releases across instances
+- [Multi-instance releases](https://docs.retool.com/source-control/guides/multi-instance-releases/): Learn about multi-instance releases and how they differ between apps and classic apps.
 - [Protect agents with Source Control](https://docs.retool.com/source-control/guides/protect/agents): Learn how to make changes to agents protected with Source Control.
 - [Protect apps with Source Control](https://docs.retool.com/source-control/guides/protect/apps-v2): Learn how to protect apps with Source Control.
 - [Protect classic apps with Source Control](https://docs.retool.com/source-control/guides/protect/apps): Learn how to make changes to classic apps protected with Source Control.
@@ -968,7 +961,7 @@ This file contains links to documentation sections following the llmstxt.org sta
 - [Protect themes with Source Control](https://docs.retool.com/source-control/guides/protect/themes): Learn how to protect and sync themes using Source Control.
 - [Protect workflows with Source Control](https://docs.retool.com/source-control/guides/protect/workflows): Learn how to protect workflows with Source Control.
 - [Test Source Control deployments](https://docs.retool.com/source-control/guides/test-deploy): Learn how to test changes in Source Control to ensure they deploy without error.
-- [Troubleshoot Source Control issues](https://docs.retool.com/source-control/guides/troubleshooting): Learn how to troubleshoot Source Control.
+- [Troubleshooting Source Control](https://docs.retool.com/source-control/guides/troubleshooting): Learn how to troubleshoot Source Control.
 - [Source Control how-to guides](https://docs.retool.com/source-control/guides): Step-by-step instructions for common features and functionality of Source Control.
 - [Source Control documentation](https://docs.retool.com/source-control/): Manage changes to Retool apps using SCM providers and version control.
 - [Source Control quickstart](https://docs.retool.com/source-control/quickstart): Learn about the fundamental concepts of Source Control for managing changes in Retool.
@@ -1036,14 +1029,15 @@ This file contains links to documentation sections following the llmstxt.org sta
 - [Lab 1 - Customer app with reservation using Canvas](https://docs.retool.com/education/labs/bootcamp/lab1): The Flash customer web app will serve as the portal for customer actions. In this lab, we are focusing on creating a reservation form so we can cap...
 - [Lab 2 - Telematic event workflow](https://docs.retool.com/education/labs/bootcamp/lab2): The FM2 Electric Bike is able to emit telematic events that indicate faults or failures. A simulated telematic event will hit a Telematics Workflow...
 - [Lab 3 - Service agent](https://docs.retool.com/education/labs/bootcamp/lab3): Develop an agent that is able to take telematic events, identify the affected customer, and if appropriate send a replacement assembly while coordi...
-- [Lab 4 - Customer app with service scheduling using chat](https://docs.retool.com/education/labs/bootcamp/lab4): Now we want to update the existing Retool Classic customer app to have a new service page. The customer will receive an email notifying them of a s...
-- [Lab 5 - Service technican app using chat](https://docs.retool.com/education/labs/bootcamp/lab5): Service technicians that perform service on the FM2 Electric Bike require an app to view their service appointments as well as a service manual the...
+- [Lab 4 - Customer app with service scheduling](https://docs.retool.com/education/labs/bootcamp/lab4): Now we want to update the existing Retool Classic customer app to have a new service page. The customer will receive an email notifying them of a s...
+- [Lab 5 - Service technician app](https://docs.retool.com/education/labs/bootcamp/lab5): Service technicians that perform service on the FM2 Electric Bike require an app to view their service appointments as well as a service manual the...
 - [Lab 6 - Inventory management application](https://docs.retool.com/education/labs/bootcamp/lab6): The procurement team is interested in being able to view/manage inventory more easily. This will allow them to identify trends in consumption and m...
 - [Minihack - Inventory Optimization Agent](https://docs.retool.com/education/labs/bootcamp/minihack): Flash Mobility needs to closely monitor available inventory to eliminate potential manufacturing delays. Stretch your skills to see if you can deve...
 - [Overview](https://docs.retool.com/education/labs/bootcamp/overview): Bootcamp provides a collection of connected labs representing a simulated mobility manufacturer. customer acquisition, service, and inventory manag...
 - [Bootcamp](https://docs.retool.com/education/labs/bootcamp): <DocCardList
 - [Paginated API](https://docs.retool.com/education/labs/data/api-paginated): The following lab covers how to integrate with a paginated API using Retool Workflows.
-- [Generate Financial App with AppGen and Charts](https://docs.retool.com/education/labs/data/appgen): Build a stock-tracking application using AppGen, add interactive charts with Retool and Plotly, and extend the app with a database write-back form.
+- [Generate Financial App with Charts](https://docs.retool.com/education/labs/data/appgen): Build a stock-tracking application using AppGen, add an interactive chart, and extend the app with a database write-back form.
+- [Chart development in Classic App](https://docs.retool.com/education/labs/data/charts): Build a stock-tracking application via drag-and-drop and add interactive charts with Retool chart components.
 - [Compliance Dashboard](https://docs.retool.com/education/labs/data/compliance-dashboard): Build a React dashboard using Retool
 - [Build a Cross-source Airport Optimization Agent](https://docs.retool.com/education/labs/data/data-agent): Use a Retool Agent with multiple tools — a database, a public weather API, and a distance-calculation function — to recommend optimal destination a...
 - [Trigger an App Enrichment Workflow](https://docs.retool.com/education/labs/data/enrich): Create an enrichment workflow that queries Retool Database, writes audit records to a secondary table, and updates the calling Retool app in real t...
@@ -1052,6 +1046,7 @@ This file contains links to documentation sections following the llmstxt.org sta
 - [Retool Storage and Database](https://docs.retool.com/education/labs/data/storage): The following lab covers the use of Retool Storage and Database in support of the <a href="../examples/inventorymgmtmultipage">Multipage inventory ...
 - [Data](https://docs.retool.com/education/labs/data): <DocCardList
 - [Classic App Converter](https://docs.retool.com/education/labs/development/classic-converter): Convert a classic Retool app to a Retool app using the built-in AI-powered converter.
+- [Retool CLI](https://docs.retool.com/education/labs/development/cli): Build in your Agentic Coding Tool
 - [Design](https://docs.retool.com/education/labs/development/design): The following examples are used to compare design changes a Retool developer can make to improve usability, efficiency, utility and consistency.
 - [Import a React Application](https://docs.retool.com/education/labs/development/import-react-app): Import a React application created with AI tools like Claude Code into Retool using the built-in import workflow.
 - [Retool App Performance](https://docs.retool.com/education/labs/development/performance): This laboratory focuses on diagnosing and resolving performance issues within a Retool app.
@@ -1063,6 +1058,8 @@ This file contains links to documentation sections following the llmstxt.org sta
 - [Delivery Agent](https://docs.retool.com/education/labs/examples/deliveryagent): The following lab combines features from the Retool enterprise AppGen platform including Retool Database, an app generated using Assist in Retool, ...
 - [Inventory Management Multipage App](https://docs.retool.com/education/labs/examples/inventorymgmtmultipage): This laboratory focuses on developing a Classic Retool App focused on simple inventory management using a database (e.g., Retool Database / Postgre...
 - [Inventory Reorder Workflow](https://docs.retool.com/education/labs/examples/inventoryreorderwf): This laboratory focuses on developing a reorder workflow initiated by a <a href="./inventorymgmtmultipage">Retool Inventory Management Multipage</a...
+- [Kanban Board Example](https://docs.retool.com/education/labs/examples/kanban-board): Create a Kanban Board App
+- [Procurement Dashboard](https://docs.retool.com/education/labs/examples/procurement): Compare supplier inventory and pricing
 - [Student Gradebook App using AI Action and Prompt Engineering](https://docs.retool.com/education/labs/examples/promptengineer): Retool Apps and Workflows provide the AI Action feature either as a query (apps) or block (workflows). The key for the AI Action is on developing i...
 - [Shipment Processing Workflow](https://docs.retool.com/education/labs/examples/shippingwf): This laboratory focuses on developing an advanced workflow that needs to integrate with an unreliable paginated API.
 - [Ticketing Workflow and App](https://docs.retool.com/education/labs/examples/ticketingwf+app): This laboratory focuses on creating a lightweight Extract, Transform, Load (ETL) Retool workflow process to pull ticket information from an externa...
@@ -1081,6 +1078,8 @@ This file contains links to documentation sections following the llmstxt.org sta
 - [SQL Application](https://docs.retool.com/education/labs/fundamentals/sqlapp): The following SQL App provides a sample that demonstrates the use of SQL queries and how those queries are connected to components and event handle...
 - [Retool Workflow IDE](https://docs.retool.com/education/labs/fundamentals/workflowide): The <a href="https://docs.retool.com/workflows/concepts/ide">Retool Workflow IDE</a> provides the development interface for creating workflows. The...
 - [Fundamentals](https://docs.retool.com/education/labs/fundamentals): <DocCardList
+- [Resource Access Policy](https://docs.retool.com/education/labs/governance/access-policy): Defining policy for Database resource
+- [AI visibility](https://docs.retool.com/education/labs/governance/ai-visibility): Monitor AI Consumption in Retool
 - [Automate Group Membership using Retool API](https://docs.retool.com/education/labs/governance/automate): This lab focuses on the use of Retool User attributes, Retool Events, Retool Workflows and Retool Platform API to demonstrate developing automated ...
 - [Retool Building Context](https://docs.retool.com/education/labs/governance/building-context): Specify building context for Retool Apps (Beta)
 - [MCP for Administration](https://docs.retool.com/education/labs/governance/mcp-admin): Organization and user management
@@ -1114,13 +1113,19 @@ This file contains links to documentation sections following the llmstxt.org sta
 ## Other
 
 - [App builder](https://docs.retool.com/build/apps/concepts/app-builder): The app builder, including the AI-powered editor, live preview, and debugging tools.
+- [App best practices](https://docs.retool.com/build/apps/concepts/best-practices/): Best practices for building apps.
+- [Performance best practices](https://docs.retool.com/build/apps/concepts/best-practices/performance): Best practices for building performant apps.
+- [Prompting best practices](https://docs.retool.com/build/apps/concepts/best-practices/prompting): Best practices for writing prompts to build and edit apps.
+- [Token management best practices for app building](https://docs.retool.com/build/apps/concepts/best-practices/token-management): Token management best practices for app building with AI.
+- [Build apps from anywhere](https://docs.retool.com/build/apps/concepts/build-from-anywhere): The tools available for building apps from your chosen development environment.
 - [Compare apps and classic apps](https://docs.retool.com/build/apps/concepts/classic-app-comparison): A conceptual overview of how apps and classic apps differ in Retool, presented as comparison tables.
+- [Retool CLI](https://docs.retool.com/build/apps/concepts/cli): Learn about how the Retool CLI works.
+- [App code quality](https://docs.retool.com/build/apps/concepts/code-quality): How Retool ensures that generated apps are consistent, type-safe, and secure by default.
 - [Data in apps](https://docs.retool.com/build/apps/concepts/data): Access data through resources and operate upon it with functions.
-- [How apps work](https://docs.retool.com/build/apps/concepts/how-it-works): Learn how apps work in Retool, including AI-assisted code generation, the build process, and how apps connect to your data.
-- [Prompting best practices](https://docs.retool.com/build/apps/concepts/prompting-best-practices): Best practices for writing prompts to build and edit apps.
+- [Debug app issues](https://docs.retool.com/build/apps/concepts/debug): Use the debug console to identify errors and resolve them.
+- [Introduction to apps](https://docs.retool.com/build/apps/concepts/intro): Learn how apps work in Retool, including AI-assisted code generation, the build process, and how apps connect to your data.
 - [App security](https://docs.retool.com/build/apps/concepts/security): How apps handle security when using AI functionality, including data storage, routing, and LLM training policies.
 - [Threads and branches](https://docs.retool.com/build/apps/concepts/threads-branches): How threads and branches work in the app builder.
-- [Token management for app building](https://docs.retool.com/build/apps/concepts/token-management): Token management best practices for app building with AI.
 - [Apps concept guides](https://docs.retool.com/build/apps/concepts): Learn about relevant features, functionality, and principles related to apps.
 - [Configure your organization to use apps](https://docs.retool.com/build/apps/guides/configuration): Configure your organization to enable your users to create apps.
 - [Retool CLI](https://docs.retool.com/build/apps/guides/create/cli): Use the Retool CLI to build Retool apps from the command line.
@@ -1131,22 +1136,26 @@ This file contains links to documentation sections following the llmstxt.org sta
 - [Create apps](https://docs.retool.com/build/apps/guides/create/): Step-by-step instructions for creating apps.
 - [Use MCP to build apps](https://docs.retool.com/build/apps/guides/create/mcp): Use Retool's MCP to build apps.
 - [Add third-party packages to an app](https://docs.retool.com/build/apps/guides/create/packages): Add third-party packages to extend the functionality of your app.
-- [Prompt the agent to build apps](https://docs.retool.com/build/apps/guides/create/prompt): Use the **Chat** tab to prompt the agent to create, edit, and import apps.
+- [Prompt the agent to build apps](https://docs.retool.com/build/apps/guides/create/prompt): Use the Chat tab to prompt the agent to create, edit, and import apps.
 - [Customize app themes](https://docs.retool.com/build/apps/guides/create/themes): Apply and reuse themes to control the appearance of apps.
 - [Manage app building agent context](https://docs.retool.com/build/apps/guides/manage/building-context): Use Building context to add instructions that apply across all apps.
 - [Customize the Content Security Policy for apps](https://docs.retool.com/build/apps/guides/manage/custom-csp): Configure custom Content Security Policy rules to allow or restrict behavior for your apps.
+- [Embed a published app](https://docs.retool.com/build/apps/guides/manage/embed): Configure Content Security Policy rules to embed a published app in an iframe on another site, in another app, or in a classic app.
 - [Enable and configure apps for external users](https://docs.retool.com/build/apps/guides/manage/external): Learn how to enable and customize the external app experience.
 - [Manage app building](https://docs.retool.com/build/apps/guides/manage/): Step-by-step instructions for managing organization-wide settings that influence how apps are built, configured, and shared.
+- [Build a landing page](https://docs.retool.com/build/apps/guides/manage/landing-pages): Learn how to use landing pages to automatically route users to pre-specified apps.
 - [Publish an app](https://docs.retool.com/build/apps/guides/publishing): Publish, tag, and restore app versions.
 - [Share published apps](https://docs.retool.com/build/apps/guides/share): Share apps with other users, and manage access.
 - [Edit and publish protected apps](https://docs.retool.com/build/apps/guides/source-control/edit-publish): Publish apps, create new releases, and restore previous versions with Source Control.
 - [Use Source Control with apps](https://docs.retool.com/build/apps/guides/source-control/): Manage apps with source control, including Git integration and version history.
 - [Switching between building environments](https://docs.retool.com/build/apps/guides/source-control/local): Transition between an external coding environment and Retool's app builder.
 - [Protect apps with Source Control](https://docs.retool.com/build/apps/guides/source-control/protect-app): Learn how to protect apps with Source Control.
-- [Troubleshooting apps](https://docs.retool.com/build/apps/guides/troubleshooting): Troubleshooting common issues with apps.
+- [Troubleshooting apps](https://docs.retool.com/build/apps/guides/troubleshooting/): Troubleshooting common issues with apps.
+- [Performance troubleshooting](https://docs.retool.com/build/apps/guides/troubleshooting/performance): Troubleshooting strategies for improving app performance.
 - [Apps how-to guides](https://docs.retool.com/build/apps/guides): Step-by-step instructions for using common features and functionality in apps.
 - [Apps documentation](https://docs.retool.com/build/apps/): Use AI to build apps with rich interfaces, powered by your data.
-- [Apps quickstart](https://docs.retool.com/build/apps/quickstart): Learn how to get started building an app.
+- [Apps quickstart](https://docs.retool.com/build/apps/quickstart): A hands-on tutorial for building your first app with Retool's AI-powered app builder.
+- [Retool CLI reference](https://docs.retool.com/build/apps/reference/cli): Use the Retool CLI to build Retool apps from the command line.
 - [The Current User object](https://docs.retool.com/build/apps/reference/current-user): Information about the current logged-in or authenticated user of the app.
 - [Keyboard shortcuts](https://docs.retool.com/build/apps/reference/keyboard-shortcuts): Reference documentation for keyboard shortcuts available in the app builder.
 - [MCP tools](https://docs.retool.com/build/apps/reference/mcp-tools): The set of tools available for use through Retool's MCP.
@@ -1159,6 +1168,10 @@ This file contains links to documentation sections following the llmstxt.org sta
 - [Retool-hosted, multi-tenant](https://docs.retool.com/retool-hosted/multi-tenant): Get started instantly with a multi-tenant instance that's hosted and managed by Retool.
 - [Retool-hosted, single-tenant](https://docs.retool.com/retool-hosted/single-tenant): Use a single-tenant instance that's deployed and operated by Retool.
 - [Retool-hosted deployments](https://docs.retool.com/retool-hosted): Choose between multi-tenant and single-tenant Retool-hosted instances.
+- [Upgrade from Retool 3.x to 4.0 (Docker Compose)](https://docs.retool.com/self-hosted/self-managed/guides/upgrade/3x/upgrade-docker-compose): Upgrade an existing self-hosted Retool 3.x Docker Compose deployment to Retool 4.0.
+- [Upgrade from Retool 3.x to 4.0 (Helm)](https://docs.retool.com/self-hosted/self-managed/guides/upgrade/3x/upgrade-helm): Upgrade an existing self-hosted Retool 3.x Helm deployment to Retool 4.0.
+- [Upgrade within the Retool 4.x line (Docker Compose)](https://docs.retool.com/self-hosted/self-managed/guides/upgrade/4x/upgrade-docker-compose): Upgrade an existing self-hosted Retool 4.x Docker Compose instance to a later 4.x stable release.
+- [Upgrade within the Retool 4.x line (Helm)](https://docs.retool.com/self-hosted/self-managed/guides/upgrade/4x/upgrade-helm): Upgrade an existing self-hosted Retool 4.x Helm instance to a later 4.x stable release.
 - [Service Status](https://docs.retool.com/status): Current operational status for Retool and commonly used third-party cloud services.
 - [Versioned documentation](https://docs.retool.com/versions): Learn about Retool's documentation versioning.
 - [Cost management (Self-hosted)](https://docs.retool.com/education/coe/well-architected/cost-management): The Retool Platform when run in a self-hosted environment (e.g., AWS, Azure, Google) will rely on compute, storage, networking, and security infras...
