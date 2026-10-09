@@ -1,0 +1,14 @@
+generated: '2026-10-04'
+method: generated
+generator: finish-artifacts.py (index from skill frontmatter)
+source: skills/*.md frontmatter; every operationId checked against openapi/
+skills:
+- file: skills/retool-apps.md
+  name: retool-apps
+  api: retool-apps-api-openapi.yml
+  operations:
+  - listApps
+  - createApp
+  - getApp
+  - updateApp
+  - deleteApp

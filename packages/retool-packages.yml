@@ -1,0 +1,29 @@
+generated: '2026-10-04'
+method: searched
+source: "https://registry.npmjs.org/-/v1/search?text=retool&size=5"
+packages:
+  - name: react-retool
+    registry: npm
+    official: true
+    version: "1.4.0"
+    published: 2023-02-08
+  - name: "@types/react-retool"
+    registry: npm
+    official: false
+    version: "1.4.0"
+    published: 2024-09-07
+  - name: "@tryretool/retool-embed"
+    registry: npm
+    official: true
+    version: "1.4.0"
+    published: 2025-06-03
+  - name: retoolrpc
+    registry: npm
+    official: true
+    version: "0.2.0"
+    published: 2026-08-04
+  - name: retool-cli
+    registry: npm
+    official: true
+    version: "1.0.30"
+    published: 2026-09-29

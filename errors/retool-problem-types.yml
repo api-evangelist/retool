@@ -1,0 +1,59 @@
+generated: '2026-10-04'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/retool-apps-api-openapi.yml
+- openapi/retool-folders-api-openapi.yml
+- openapi/retool-groups-api-openapi.yml
+- openapi/retool-resources-api-openapi.yml
+- openapi/retool-users-api-openapi.yml
+format: custom
+envelope:
+  media_type: application/json
+  schema: Error
+coverage:
+  operations: 17
+  statuses_declared: 6
+problems:
+- status: 400
+  title: Bad Request
+  description: The request was malformed or contained invalid parameters.
+  operations: 7
+  media_types:
+  - application/json
+  schema: Error
+- status: 401
+  title: Unauthorized
+  description: Authentication failed. The Bearer token is missing or invalid.
+  operations: 17
+  media_types:
+  - application/json
+  schema: Error
+- status: 403
+  title: Forbidden
+  description: Access denied. The token does not have the required permissions.
+  operations: 17
+  media_types:
+  - application/json
+  schema: Error
+- status: 404
+  title: Not Found
+  description: The requested resource was not found.
+  operations: 8
+  media_types:
+  - application/json
+  schema: Error
+- status: 409
+  title: Conflict
+  description: A conflict occurred, such as a duplicate email address.
+  operations: 1
+  media_types:
+  - application/json
+  schema: Error
+- status: 500
+  title: Internal Server Error
+  description: An internal server error occurred.
+  operations: 17
+  media_types:
+  - application/json
+  schema: Error

@@ -120,54 +120,16 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
-  responses:
-    Unauthorized:
-      description: Authentication failed. The Bearer token is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed or contained invalid parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    InternalServerError:
-      description: An internal server error occurred.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: Access denied. The token does not have the required permissions.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    userId:
-      name: userId
-      in: path
-      required: true
-      description: The unique UUID identifier of the user.
-      schema:
-        type: string
-        format: uuid
-    groupId:
-      name: groupId
-      in: path
-      required: true
-      description: The numeric identifier of the group.
-      schema:
-        type: integer
   schemas:
+    GroupListResponse:
+      type: object
+      description: List of groups.
+      properties:
+        data:
+          type: array
+          description: Array of group objects.
+          items:
+            $ref: '#/components/schemas/Group'
     Error:
       type: object
       description: An error response.
@@ -178,6 +140,18 @@ components:
         code:
           type: string
           description: A machine-readable error code.
+    UserRef:
+      type: object
+      description: A reference to a user.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The user UUID.
+        email:
+          type: string
+          format: email
+          description: The user's email address.
     AddGroupMemberRequest:
       type: object
       required:
@@ -211,27 +185,6 @@ components:
           type: string
           format: date-time
           description: Timestamp when the group was last updated.
-    UserRef:
-      type: object
-      description: A reference to a user.
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: The user UUID.
-        email:
-          type: string
-          format: email
-          description: The user's email address.
-    GroupListResponse:
-      type: object
-      description: List of groups.
-      properties:
-        data:
-          type: array
-          description: Array of group objects.
-          items:
-            $ref: '#/components/schemas/Group'
     CreateGroupRequest:
       type: object
       required:
@@ -241,6 +194,53 @@ components:
         name:
           type: string
           description: The name of the new group.
+  responses:
+    Unauthorized:
+      description: Authentication failed. The Bearer token is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalServerError:
+      description: An internal server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Access denied. The token does not have the required permissions.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    userId:
+      name: userId
+      in: path
+      required: true
+      description: The unique UUID identifier of the user.
+      schema:
+        type: string
+        format: uuid
+    groupId:
+      name: groupId
+      in: path
+      required: true
+      description: The numeric identifier of the group.
+      schema:
+        type: integer
   securitySchemes:
     bearerAuth:
       type: http

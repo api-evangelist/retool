@@ -40,45 +40,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
-  responses:
-    Unauthorized:
-      description: Authentication failed. The Bearer token is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    InternalServerError:
-      description: An internal server error occurred.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: Access denied. The token does not have the required permissions.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    ResourceListResponse:
-      type: object
-      description: List of data source resources.
-      properties:
-        data:
-          type: array
-          description: Array of resource objects.
-          items:
-            $ref: '#/components/schemas/Resource'
-    Error:
-      type: object
-      description: An error response.
-      properties:
-        message:
-          type: string
-          description: A human-readable error message.
-        code:
-          type: string
-          description: A machine-readable error code.
     Resource:
       type: object
       description: A Retool data source resource connection.
@@ -103,6 +65,44 @@ components:
           type: string
           format: date-time
           description: Timestamp when the resource was last updated.
+    Error:
+      type: object
+      description: An error response.
+      properties:
+        message:
+          type: string
+          description: A human-readable error message.
+        code:
+          type: string
+          description: A machine-readable error code.
+    ResourceListResponse:
+      type: object
+      description: List of data source resources.
+      properties:
+        data:
+          type: array
+          description: Array of resource objects.
+          items:
+            $ref: '#/components/schemas/Resource'
+  responses:
+    Unauthorized:
+      description: Authentication failed. The Bearer token is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalServerError:
+      description: An internal server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Access denied. The token does not have the required permissions.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

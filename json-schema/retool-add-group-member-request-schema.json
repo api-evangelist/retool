@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/retool/main/json-schema/retool-add-group-member-request-schema.json",
+  "title": "AddGroupMemberRequest",
+  "description": "Request body for adding a user to a group.",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/retool-groups-api-openapi.yml#/components/schemas/AddGroupMemberRequest",
+  "type": "object",
+  "required": [
+    "userId"
+  ],
+  "properties": {
+    "userId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The UUID of the user to add to the group."
+    }
+  }
+}
