@@ -3,6 +3,7 @@ method: searched
 checked:
 - datadog/integrations/datadog-integration-edges.yml
 - https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
+- https://github.com/PipedreamHQ/pipedream/tree/d5872355ef27b4efa769f05352f2820c299a456e/components/
 source:
 - datadog/integrations/datadog-integration-edges.yml
 edges:
@@ -31,7 +32,7 @@ edges:
   channel: open-source-node
   relationship: ipaas-bridge
   direction: third-party
-  evidence: https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/retool
+  evidence: https://github.com/PipedreamHQ/pipedream/tree/d5872355ef27b4efa769f05352f2820c299a456e/components/retool
   category: null
   contract_reference:
     register: Pipedream components (PipedreamHQ/pipedream components/)
